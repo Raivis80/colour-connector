@@ -1,84 +1,38 @@
-# **Colour Connector**
+![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-## Overview
+Welcome AdamBoley,
 
-View the live project [Here]()
+This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
 
+You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **September 1, 2021**
 
-[Am I Responsive]()
+## Gitpod Reminders
 
+To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-## User Experience (UX)
+`python3 -m http.server`
 
-### User Stories
+A blue button should appear to click: _Make Public_,
 
+Another blue button should appear to click: _Open Browser_.
 
+To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
 
+A blue button should appear to click: _Make Public_,
 
-### User Experience in this Site
-This website takes the users stories mentioned above into consideration to create a positive UX.  The users experience is discussed in more detail below with examples.
+Another blue button should appear to click: _Open Browser_.
 
-## Design
+In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
 
+To log into the Heroku toolbelt CLI:
 
-### Design Research
+1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
+2. Scroll down to the *API Key* and click *Reveal*
+3. Copy the key
+4. In Gitpod, from the terminal, run `heroku_config`
+5. Paste in your API key when asked
 
-### Design Wireframes
-### Fonts
-### Colour Scheme
-
-## Features
-1. **Favicon**
-
-
-2. **Header**
-
-    * Logo
-
-    * Navigation Bar
+You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
 
 
-3. **Landing Page**
-
-4. **Footer**
-
-
-5.  **Other Sections
-
-
-6. **Error Pages**
-
-* - 404 Page A customised 404 page not found was added to the site to support the professionalism design and ensure appropriate link was added back to the main site to guide users who come across this message.
-
-
-
-### Features Left to Implement
-
-
-## Testing
-
-
-
-### Validator Testing
-
-
-## Deployment
-
-
-### Version Control
-1.	The main repository was forked by all collaborators
-2.	Branch protection was added to ensure pull requests were reviewed before merging
-3.	Each team member ensured their development environment was linked by using the command:  git remote -v 
-4.	For each new feature, team members created a new branch: git checkout -b branch-name
-5.	To ensure this branch was being tracked: git push -u origin branch-name
-6.	 In order to update the project files in their own work space:  git pull upstream main this was important to limit the amount of merge conflicts a team member came across
-7.	Each team member used git add . git commit and git push to add, stage and save their work to their branch. 
-8.	When a team member finished a feature they made a Pull Request.  A template was used for this Pull Request so all team members information was structured the same.  This Pull Request was then checked by another member of the team.  If a merge conflict arose the team member would be notified by a comment otherwise the branch was merged.
-
-### Cloning
-## Credits
-### Content
-### Media
-
-
-## Acknowledgements
+# The Colour Connector
