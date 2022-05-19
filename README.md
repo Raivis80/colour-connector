@@ -24,6 +24,20 @@ This website takes the users stories mentioned above into consideration to creat
 ### Design Research
 
 ### Design Wireframes
+
+#### Initial Wireframes
+![index-page](media/wireframes/index-page.png)
+
+![index-logged-in-page](media/wireframes/index-page-logged-in.png)
+
+![sign-up-page](media/wireframes/sign-up-page.png)
+
+![user-profile-page](media/wireframes/user-profile-page.png)
+
+![non-user-profile-page](media/wireframes/non-user-profile-page.png)
+
+![about-page](media/wireframes/index-page.png)
+
 ### Fonts
 ### Colour Scheme
 
