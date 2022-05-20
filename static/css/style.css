@@ -1,3 +1,7 @@
+body {
+    font-family: 'Alata', sans-serif;
+}
+
 main {
     padding-top: 16px;
     padding-bottom: 10px;
@@ -38,8 +42,6 @@ main {
 #footer .btn-primary {
     border-radius: 50px
 }
-<<<<<<< HEAD
-=======
 
 /* Index.html style rules*/
 
@@ -92,18 +94,19 @@ a div {
     padding: 10px;
 }
 
-p {
+#intro p {
     color: blue;
     font-weight: 500;
+    text-align: center;
 }
 
 #line-break {
     float: none;
 }
 
-p {
-    text-align: center;
+#buttons p {
     font-size: larger;
+    text-align: center;
 }
 
 #intro, .button {
@@ -137,4 +140,3 @@ p {
     0% {opacity:0;}
     100% {opacity:1;}
   }
->>>>>>> 21dd0ca251397f7d15f53aac543ccb71186e9048
