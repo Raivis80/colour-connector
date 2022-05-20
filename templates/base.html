@@ -1,67 +1,3 @@
-<<<<<<< HEAD
-<!doctype html>
-<html lang="en">
-
-<head>
-    {% load static %}
-    <!-- Required meta tags -->
-    {% block meta %}
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="#" />
-    <meta name="author" content="#" />
-
-    <!-- Chrome, Firefox OS and Opera -->
-    <meta name="theme-color" content="#292929">
-
-    {% endblock %}
-
-    <link rel="icon" type="image/x-icon" href="#" />
-
-    <!-- Bootstrap CSS -->
-    {% block corecss %}
-
-    {% endblock %}
-
-    {% block extra_css %}
-    {% endblock %}
-
-    <!-- Core javasCript -->
-    {% block corejs %}
-    {% if request.get_full_path == '/checkout/' %}
-    <script src="https://js.stripe.com/v3/"></script>
-    {% endif %}
-    {% endblock %}
-
-    {% block extra_js %}
-    {% endblock %}
-
-    <title>New wesite</title>
-</head>
-
-<body>
-
-    <!-- Error Messages Container -->
-    {% if messages %}
-    {% endif %}
-
-    <!-- Extra Header content -->
-    {% block page_header %}
-    {% endblock %}
-
-    <!-- Main website contant content -->
-    {% block content %}
-    {% endblock %}
-
-   
-    <!-- Postload JavaScript content block -->
-    {% block postloadjs %}
-
-    {% endblock %}
-
-</body>
-
-=======
 <!doctype html>
 <html lang="en">
 
@@ -181,5 +117,4 @@
 
 </body>
 
->>>>>>> 7e2b7ad9698ef7507297a8ce3ed33c51ea87764b
 </html>
