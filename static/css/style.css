@@ -42,6 +42,10 @@ main {
     border-radius: 50px
 }
 
+#copyright {
+    padding-bottom: 10px;
+}
+
 /* Index.html style rules*/
 
 #background-video {
