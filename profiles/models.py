@@ -12,3 +12,15 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+# Friend list modal
+class FriendsList(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    friend = models.ForeignKey(User, on_delete=models.CASCADE, related_name='friend')
+    is_requested = models.BooleanField(default=False)
+    is_accepted = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return self.user.username + ' ' + self.friend.username
+        return self.user.username
