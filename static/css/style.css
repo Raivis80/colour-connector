@@ -88,14 +88,20 @@ main {
     height: 60px;
 }
 
-a {
+#buttons a {
     text-decoration: none;
 }
 
-a div {
+#buttons a div {
     background-color: yellow;
     border-radius: 10px;
     padding: 10px;
+    border-style: outset;
+}
+
+#buttons a div:hover {
+    background-color: blue;
+    color: yellow;
 }
 
 #intro p {
