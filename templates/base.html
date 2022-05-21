@@ -23,7 +23,8 @@
     <!-- Google Fonts link -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Roboto+Mono:wght@400;600&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alata&family=Grape+Nuts&family=Roboto+Mono:wght@400;600&display=swap"
         rel="stylesheet">
 
     <!-- Fontawesome link -->
@@ -40,9 +41,9 @@
 
 <body class="d-flex flex-column min-vh-100">
     <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-md navbar-light">
+    <nav class="navbar fixed-top navbar-expand-md navbar-light" id="navbarNav">
         <div class="container">
-            <a class="navbar-brand mb-0" href="#" aria-label="Go Home Page">
+            <a class="navbar-brand mb-0" id="logo" href="#" aria-label="Go Home Page">
                 Colour Connector</a>
             </a>
             <!-- Bootstrap classes to collapse nav bar on smaller screens-->
@@ -79,7 +80,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-auto text-center text-white" id="footer">
+    <footer class="mt-auto text-center" id="footer">
         <!-- Footer Grid container -->
         <div class="container">
             <!-- Section Footer Links -->
@@ -89,30 +90,32 @@
                     <!-- About Us Grid column -->
                     <div class="col-md-3">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#" class="text-white" aria-label="Go About Us Page">About us</a>
+                            <a class="link-dark" href="#" aria-label="Go About Us Page">About us</a>
                         </h6>
                     </div>
 
                     <!-- Privacy Grid column -->
                     <div class="col-md-3">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#" class="text-white" aria-label="Go Privacy Policy Page">Privacy</a>
+                            <a href="#" class="link-dark" aria-label="Go Privacy Policy Page">Privacy</a>
                         </h6>
                     </div>
 
                     <!-- Accessibility Grid column -->
                     <div class="col-md-3">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a href="#" class="text-white" aria-label="Go Accessibility Page">Accessibility</a>
+                            <a href="#" class="link-dark" aria-label="Go Accessibility Page">Accessibility</a>
+                        </h6>
+                    </div>
+
+                    <!-- Copyright -->
+                    <div class="col-md-3">
+                        <h6 class="text-center" id="copyright">
+                            © 2022 Copyright The Lightsabers
                         </h6>
                     </div>
                 </div>
             </section>
-
-            <!-- Copyright -->
-            <div class="text-center" id="copyright">
-                © 2022 Copyright The Lightsabers
-            </div>
         </div>
     </footer>
 
