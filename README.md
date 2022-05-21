@@ -138,6 +138,7 @@ The project was deployed to Heroku. Unfortunately, some weeks prior to the start
 5. Push those changes to both Heroku and Github with the commands `git push origin main` and `git push heroku main`
 6. On Heroku - select the heroku/python and heroky/nodejs buildpacks
 7. Set the environment variables - 
+8. small change
 
 
 # Version Control
