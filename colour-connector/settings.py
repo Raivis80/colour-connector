@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'home',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +77,12 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+
 WSGI_APPLICATION = 'colour-connector.wsgi.application'
 
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
