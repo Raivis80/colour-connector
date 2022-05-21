@@ -11,8 +11,20 @@ main {
 /* Custom styling for nav bar */
 .navbar {
     padding-top: 0;
+    padding-bottom: 0;
     background-color: whitesmoke;
 }
+
+#logo {
+    font-family: 'Grape Nuts', cursive;
+    font-size: 30px;
+}
+
+#logo a:hover {
+    color: #0277bd;
+    letter-spacing: 1px;
+}
+
 
 .navbar-light .navbar-nav .nav-link.active {
     color: #0277bd;
