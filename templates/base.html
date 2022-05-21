@@ -1,8 +1,9 @@
+{%  load static  %}
 <!doctype html>
 <html lang="en">
 
 <head>
-    {% load static %}
+
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -20,12 +21,16 @@
     <!-- Favicon link -->
 
     <!-- Google Fonts link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alata&family=Roboto+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
 
     <!-- Fontawesome link -->
     <script src="https://kit.fontawesome.com/b83175b9a4.js" crossorigin="anonymous"></script>
 
     <!-- My CSS link -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{%  static 'css/style.css'  %}">
 
     <title> Colour Connector
         {% block title %}
@@ -38,7 +43,7 @@
     <nav class="navbar fixed-top navbar-expand-md navbar-light">
         <div class="container">
             <a class="navbar-brand mb-0" href="#" aria-label="Go Home Page">
-                Colour Connectors</a>
+                Colour Connector</a>
             </a>
             <!-- Bootstrap classes to collapse nav bar on smaller screens-->
             <button type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" class="navbar-toggler"
@@ -66,6 +71,7 @@
         </div>
     </nav>
 
+
     <main>
         {% block content %}
         <!-- Content from other html pages goes here -->
@@ -77,9 +83,9 @@
         <!-- Footer Grid container -->
         <div class="container">
             <!-- Section Footer Links -->
-            <section class="mt-5">
+            <section>
                 <!-- Grid row-->
-                <div class="row text-center d-flex justify-content-center pt-5">
+                <div class="row text-center d-flex justify-content-center pt-1">
                     <!-- About Us Grid column -->
                     <div class="col-md-3">
                         <h6 class="text-uppercase font-weight-bold">
@@ -104,7 +110,7 @@
             </section>
 
             <!-- Copyright -->
-            <div class="text-center p-3" id="copyright">
+            <div class="text-center" id="copyright">
                 © 2022 Copyright The Lightsabers
             </div>
         </div>
