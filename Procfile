@@ -1,1 +1,1 @@
-Web: gunicorn colour-connector.wsgi:application
+web: gunicorn colour-connector.wsgi:application
