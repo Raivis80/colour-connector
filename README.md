@@ -36,7 +36,7 @@ This website takes the users stories mentioned above into consideration to creat
 
 ![non-user-profile-page](media/wireframes/non-user-profile-page.png)
 
-![about-page](media/wireframes/index-page.png)
+![about-page](media/wireframes/about-page.png)
 
 ### Fonts
 ### Colour Scheme

@@ -1,0 +1,152 @@
+body {
+    font-family: 'Alata', sans-serif;
+}
+
+main {
+    padding-top: 16px;
+    padding-bottom: 10px;
+    height: 100vh;
+}
+
+/* Custom styling for nav bar */
+.navbar {
+    padding-bottom: 20px;
+    background-color: whitesmoke;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: #0277bd;
+    border-bottom: 1px solid;
+}
+
+#navbarNav a:hover {
+    color: #0277bd;
+    letter-spacing: 1px;
+}
+
+/* Custom styling for footer */
+
+#footer {
+    background-color: #3f51b5;
+}
+
+#footer a {
+    text-decoration: none;
+}
+
+#footer a:hover {
+    letter-spacing: 1px;
+}
+
+#footer .btn-primary {
+    border-radius: 50px
+}
+
+#copyright {
+    padding-bottom: 10px;
+}
+
+/* Index.html style rules*/
+
+#background-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    /* Give some opacitiy so not too dominating when text laid on top */
+    opacity: 0.7;
+    /* Use z-index so video sits behind the main title text on top */
+    z-index: -1;
+    top: 0;
+}
+
+#intro {
+    position: relative;
+    width: 50%;
+    height: auto;
+    margin: 100px auto 20px auto;
+    /*border: 1px solid red;*/
+}
+
+#buttons {
+    width: 50%;
+    height: 150px;
+    /*border: 1px solid blue;*/
+    margin: 0 auto;
+}
+
+#login-button {
+    float: left;
+}
+
+#signup-button {
+    float: right;
+}
+
+.button {
+    width: 150px;
+    height: 60px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a div {
+    background-color: yellow;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#intro p {
+    color: blue;
+    font-weight: 500;
+    text-align: center;
+}
+
+#line-break {
+    float: none;
+}
+
+#buttons p {
+    font-size: larger;
+    text-align: center;
+}
+
+#intro, .button {
+    animation: fadeIn 7s;
+    -webkit-animation: fadeIn 7s;
+    -moz-animation: fadeIn 7s;
+    -o-animation: fadeIn 7s;
+    -ms-animation: fadeIn 7s;
+  }
+  @keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-moz-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-o-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+  
+  @-ms-keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+  }
+
+/* User Account Pages*/
+
+.account-body {
+    background: url('/static/images/colour-explosion-new.gif') no-repeat right center;
+}

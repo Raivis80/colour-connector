@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+
+ {% block extra_js %}
+
+{% endblock %}
+
+{% block content %}
+
+<section> 
+    <div class="container py-5">
+        <div class="row">    
+               <h1 class="text-center">Dashboard</h1>
+               <h3 class="text-center">Welcome {{user.username}}</h3>
+               {% block messages %}
+               {% include "includes/messages.html" %}
+               {% endblock %}
+ <br>
+               {% if friends %}
+               {% for friend in friend_list %}
+                <div class="col-md-3">
+                     <div class="panel panel-default">
+                          <div class="panel-heading">
+                            <h3 class="panel-title">{{friend.name}}</h3>
+                          </div>
+                          <div class="panel-body">
+                            <img src="{{friend.image}}" class="img-responsive img-circle" alt="">
+                          </div>
+                          <div class="panel-footer">
+                            <a href="{{friend.link}}" class="btn btn-primary btn-block">View Profile</a>
+                          </div>
+                     </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+        </div>
+        <div class="col">
+            {% if requests_received %}
+            {% for received in requests_received %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">New Requests </h3>
+                <div class="panel-heading">
+                    <h6 class="panel-title">From: {{received.user.username}}</h6>
+                </div>
+
+                <form action="{% url 'accept_friend' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="friend" value="{{received.user.id}}">
+                    <input type="submit" class="btn btn-primary btn-block" value="accept">
+                </form> 
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">No Requests received</h3>
+                </div>
+                <div class="panel-body">
+                    <p>You have no pending friend requests.</p>
+                </div>
+            {% endif %}
+ <br>
+            {% if requests_sent %}
+            {% for sent in requests_sent %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Requests sent</h3>
+                <div class="panel-heading">
+                    <h6 class="panel-title">To User: {{sent.friend.username}}</h6>
+                </div>
+                
+            </div>
+          
+            {% endfor %}
+            {% else %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">No Requests sent</h3>
+                </div>
+                <div class="panel-body">
+                    <p>You have no sent requests.</p>
+                </div>
+            {% endif %}
+ <br>
+
+             {% if friend_list %}
+                {% for friend in friend_list %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Friends </h3>
+                        <div class="panel-heading">
+                            <h6 class="panel-title">Username: {{friend.friend.username}}</h6>
+                        </div>
+
+
+                    </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">No Friends</h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>You have no friends.</p>
+                    </div>
+                </div>
+            {% endif %}
+
+ <br>
+        <br>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Search for user</h3>
+                </div>
+                <div class="panel-body">
+                     <form class="form mx-auto searh-form" method="POST" action="{% url 'profile' %}">
+                        {% csrf_token %}
+                        <div class="input-group mb-3 col-12">
+                            <input type="text" class="search form-control" name="search" placeholder="Searh Store..."
+                                aria-label="Search store">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit" aria-label="Submit your search query"><i
+                                        class="fas fa-search"></i>
+                                        search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {% if friend %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">username: {{friend.username}}</h5>
+                                <h5 class="panel-title">email: {{friend.email}}</h5>
+                            
+                                <form action="{% url 'add_friend' %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="friend" value="{{friend.id}}">
+                                    <input type="submit" class="btn btn-primary btn-block" value="send friend request">
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+</section>
+          
+
+{% endblock %}
