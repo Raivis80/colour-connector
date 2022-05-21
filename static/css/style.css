@@ -12,12 +12,12 @@ main {
 .navbar {
     padding-top: 0;
     padding-bottom: 0;
-    background-color: whitesmoke;
 }
 
 #logo {
     font-family: 'Grape Nuts', cursive;
     font-size: 30px;
+    color: #000;
 }
 
 #logo a:hover {
@@ -29,6 +29,10 @@ main {
 .navbar-light .navbar-nav .nav-link.active {
     color: #0277bd;
     border-bottom: 1px solid;
+}
+
+#navbarNav a {
+    color: #000;
 }
 
 #navbarNav a:hover {
