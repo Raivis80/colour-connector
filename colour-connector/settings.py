@@ -27,7 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["https://colour-connector.herokuapp.com/", "localhost"]
+ALLOWED_HOSTS = ["colour-connector.herokuapp.com", "localhost"]
 
 # Application definition
 
