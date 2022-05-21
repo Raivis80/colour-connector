@@ -140,4 +140,3 @@ def accept_friend(request):
             error = 'Check spelling of username and try again' 
             messages.error(request, error)
             return redirect('profile')
-
