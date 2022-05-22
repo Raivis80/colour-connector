@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>{% block head_title %}{% endblock %}</title>
-    {% block extra_head %}
-    {% endblock %}
-  </head>
-  <body>
+
+<head>
+  <title>{% block head_title %}{% endblock %}</title>
+  {% block extra_head %}
+  {% endblock %}
+</head>
+
+<body>
+  <main class="mt-8 mx-5">
     {% block body %}
 
     {% if messages %}
@@ -36,5 +39,7 @@
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
-  </body>
+  </main>
+</body>
+
 </html>
