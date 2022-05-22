@@ -1,0 +1,57 @@
+<div class="row gx-3 gy-2 mb-3 border p-3">
+    {% if friend_list %}
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="row gx-3 gy-2">
+        <div class="col-12 col-sm-6">
+          <label for="search">Sellect Friend</label>
+  
+          <select class="form-select" aria-label="Disabled select">
+            {% for friend in friend_list %}
+            <option
+              value="{% if user != friend.user %} {{ friend.user }} {% else %} {{friend.friend }} {% endif %}"
+            >
+              {% if user != friend.user %} {{ friend.user }} {% else %}
+              {{friend.friend }} {% endif %}
+            </option>
+            {% endfor %}
+          </select>
+  
+          <div class="form-group">
+            <label for="message">Sellect Message</label>
+  
+            <select class="form-select" aria-label="Disabled select">
+              {% for friend in friend_list %}
+              <option value="message">Messages geoes here</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+  
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <div class="col">
+              <label for="favcolor">Select your favorite color:</label>
+            </div>
+            <div class="col">
+              <input type="color" id="favcolor" name="favcolor" value="#ff0000" />
+            </div>
+          </div>
+  
+          <input
+            class="btn btn-sm btn-primary me-auto"
+            type="submit"
+            value="Send"
+          />
+        </div>
+      </div>
+    </form>
+    {% else %}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>Add friends to send messages</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  
