@@ -61,6 +61,11 @@
                     <li class="nav-item-active">
                         <a href="{% url 'about' %}" class="nav-link" aria-label="Go About Page">About</a>
                     </li>
+                    {% if request.user.is.authenicated %}
+                    <li class="nav-item-active">
+                        <a href="{% url 'profile' %}" class="nav-link" aria-label="Go Register Page">Profile</a>
+                    </li>
+                    {% else %}
                     <li class="nav-item-active">
                         <a href="{% url 'account_signup' %}" class="nav-link" aria-label="Go Register Page">Register</a>
                     </li>
