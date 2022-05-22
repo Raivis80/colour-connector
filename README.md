@@ -200,6 +200,11 @@ The project was deployed to Heroku. Unfortunately, some weeks prior to the start
 7.	Each team member used `git add .`, `git commit -m <message>` and `git push` to add, stage and save their work to their forked repositories. 
 8.	When a team member finished a feature they made a Pull Request.  A template was used for this Pull Request so all team members information was structured the same.  This Pull Request was then checked by another member of the team.  If a merge conflict arose the team member would be notified by a comment otherwise the branch was merged.
 
+# Bugs
+
+Many bugs were encountered over the development of the project, mostly related to the implementation of Django. One particularly annoying bug stopped us from registering accounts. The offending code was in settings.py on line 153. This was changed to `EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')`, which fixed the bug and allowed users to register
+
+
 ### Cloning
 
 ### Content
