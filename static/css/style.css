@@ -209,7 +209,7 @@ main {
 /* User Account Pages*/
 
 .account-body {
-    background: url('/static/images/colour-explosion-new.gif') no-repeat right center;
+    background: url('../images/colour-explosion-new.gif') no-repeat right center;
 }
 
 /*About Us Page*/
