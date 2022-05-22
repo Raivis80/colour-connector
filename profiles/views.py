@@ -140,3 +140,25 @@ def accept_friend(request):
             error = 'Check spelling of username and try again' 
             messages.error(request, error)
             return redirect('profile')
+
+
+@require_POST
+def delete_friend(request):
+    """
+    Delete a friend from the current user's friend list
+    POST is required to get the username from the form
+    """
+    try:     
+        friend = User.objects.get(username=request.POST['friend'])
+        # get the current user
+        user = request.user
+        # delete the friend from the current user's friend list
+        delete_friend = FriendsList.objects.get(user=user, friend=friend.id)
+        delete_friend.delete()
+        message = 'Friend deleted'
+        messages.success(request, message)
+        return redirect('profile')
+    except FriendsList.DoesNotExist:
+        message = 'Could not find friend in the database'
+        messages.error(request, message)
+        return redirect('profile')
