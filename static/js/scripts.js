@@ -1,9 +1,9 @@
 // all profile images set in arrays
-let images1 = ['../images/adam/adam-2.jpg', '../images/adam/adam-3.jpg', '../images/adam/adam-1.jpg'];
-let images2 = ['../images/ciara/ciara-2.jpg', '../images/ciara/ciara-3.jpg', '../images/ciara/ciara-1.jpg'];
-let images3 = ['../images/raivis/raivis-2.jpg', '../images/raivis/raivis-3.jpg', '../images/raivis/raivis-1.jpg'];
-let images4 = ['../images/sawyer/sawyer-2.jpg', '../images/sawyer/sawyer-3.jpg', '../images/sawyer/sawyer-1.jpg'];
-let images5 = ['../images/nazia/nazia-2.jpg', '../images/nazia/nazia-3.jpg', '../images/nazia/nazia-1.jpg'];
+let images1 = ['../../../static/images/adam/adam-2.jpg', '../../../static/images/adam/adam-3.jpg', '../../../static/images/adam/adam-1.jpg'];
+let images2 = ['../../../static/images/ciara/ciara-2.jpg', '../../../static/images/ciara/ciara-3.jpg', '../../../static/images/ciara/ciara-1.jpg'];
+let images3 = ['../../../static/images/raivis/raivis-2.jpg', '../../../static/images/raivis/raivis-3.jpg', '../../../static/images/raivis/raivis-1.jpg'];
+let images4 = ['../../../static/images/sawyer/sawyer-2.jpg', '../../../static/images/sawyer/sawyer-3.jpg', '../../../static/images/sawyer/sawyer-1.jpg'];
+let images5 = ['../../../static/images/nazia/nazia-2.jpg', '../../../static/images/nazia/nazia-3.jpg', '../../../static/images/nazia/nazia-1.jpg'];
 
 // images container
 let index = 0;
