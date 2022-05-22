@@ -113,33 +113,31 @@ The project also includes an About page, which includes links to the LinkedIn an
 
 # Design
 
+## Landing Page
 
+The Landing page is designed to be visually striking. The main feature is a video of two hands touching, symbolising the theme of connection that underpins the Hackathon. The words "Sometimes words are not enough" is a distillation of the theme of the app. Below are two buttons that take the user the Login and Signup pages. These buttons have user feedback, with the text colour and background colour switching when a user hovers over them. 
 
+The text and the buttons are also set to fade in as the background video plays, and has been timed so that the text and buttons finish fading in as the colour reaches them. 
 
+## About
+
+The About page does not serve the app directly, but contains profiles for each of the team members that participated in building it. The page contains a neat bit of JavaScript coding that cycles the images of the team every three seconds. 
 
 ## Header
 
-* Logo
-
-* Navigation Bar
-
-
-## Landing Page
+Each page has the same header, which was added with Bootstrap. It contains links to the Login, Signup and About pages, plus the app's name. 
 
 ## Footer
 
-
-## Other Sections
-
+Each page has the same footer, which was added with Bootstrap. It contains the copyright and a link to the About page. 
 
 ## Error Pages
 
 404 Page A customised 404 page not found was added to the site to support the professionalism design and ensure appropriate link was added back to the main site to guide users who come across this message.
 
-
-
 # Future Work
 
+The app has excellent potemtial for future work. The initial library of images that can be sent is small, but can be expanded significantly. The app could also be expanded with a chat function similar to those of traditional social media sites. 
 
 # Testing
 
@@ -147,7 +145,19 @@ The project also includes an About page, which includes links to the LinkedIn an
 
 ### HTML Validation
 
+#### Landing page
+
+2 errors and 1 warning were detected. 1 error related to the detection of a stray anchor tag, and the other related to the detection of a duplicate ID on Line 56. However, this is a consequence of using Bootstrap, so the error was ignored. 
+
+#### About page
+
+
+
 ### CSS Validation
+
+No errors were detected in the style.css file
+
+### JS Validation
 
 ### PEP8 Python Validation
 
