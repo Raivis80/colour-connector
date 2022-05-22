@@ -151,7 +151,7 @@ The app has excellent potemtial for future work. The initial library of images t
 
 #### About page
 
-
+1 error and 1 warning were detected. The error related to the detection of a duplicate ID, but this is a consequence of Bootstrap, so it was ignored. 
 
 ### CSS Validation
 
@@ -159,16 +159,23 @@ No errors were detected in the style.css file
 
 ### JS Validation
 
+No significant errors were detected in the scripts.js file
+
 ### PEP8 Python Validation
 
 ### Lighthouse testing
 
 #### Landing page
 
+All internal navigation links work as expected. 
+
 #### Sign up page
+
+The signup page currently does not work
 
 #### Login page
 
+Since the signup page does not work, the function of the login page cannot be tested
 
 # Deployment
 
