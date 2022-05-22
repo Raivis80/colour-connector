@@ -285,18 +285,10 @@ section.aboutUs .aboutInner .aboutBlock .social ul li{
     list-style: none;
 }
 
-section.aboutUs .splashImage{
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
+#splashImage {
+    background: url('../images/colour-explosion-new.gif') no-repeat center;
 }
 
-section.aboutUs .splashImage img{
-    width: 100%;
-    opacity: 0.25;
-}
 
 @media screen and (max-width: 768px) {
     section.aboutUs .aboutInner .aboutBlock {
