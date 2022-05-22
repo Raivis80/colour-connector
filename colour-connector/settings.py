@@ -81,15 +81,13 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 WSGI_APPLICATION = 'colour-connector.wsgi.application'
 
-
-LOGIN_URL = '/account/login/'
-LOGIN_REDIRECT_URL = 'profile'
-
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/'
 
 
 # Database
