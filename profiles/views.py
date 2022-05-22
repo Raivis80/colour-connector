@@ -121,9 +121,17 @@ def accept_friend(request):
         if form.is_valid():
             # get the username of the friend from the form
             friend = form.cleaned_data['friend']
-            print(friend)
+            user = request.user
+            # Check if the user is already a friend
+            if FriendsList.objects.filter(user=user, friend=friend).exists():
+                message = 'User is already a friend'
+                messages.error(request, message)
+                return redirect('dashboard')
+            elif FriendsList.objects.filter(user=friend, friend=user).exists():
+                message = 'User is already a friend'
+                messages.error(request, message)
+                return redirect('dashboard')
             try:
-                user = request.user
                 #accept friend request and save it
                 accept_request = FriendsList.objects.get(user=friend, friend=user, is_requested=True, is_accepted=False)
                 accept_request.is_accepted = True

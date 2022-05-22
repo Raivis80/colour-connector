@@ -1,0 +1,26 @@
+{% if requests_received %}
+  <form action="{% url 'accept_friend' %}" method="post">
+            {% csrf_token %}
+                <label for="search">Friend Request</label>
+
+        <select name="friend" class="form-select" aria-label="Disabled select">
+          {% for request in requests_received%}
+          <option
+            value="{{request.user.id}}">{{request.user.username}}</option>
+          >
+          </option>
+          {% endfor %}
+        </select>
+            
+          <button
+          class="btn btn-primary"
+          type="submit"
+          aria-label="Accept friend request"
+          >
+          <i class="fas fa-search"></i>
+            Accept
+          </button>
+        </div>
+      </form>
+
+{% endif %}
