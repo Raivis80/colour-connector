@@ -121,6 +121,7 @@ main {
 #intro p {
     color: blue;
     text-align: center;
+    font-size: x-large;
 }
 
 #intro p:nth-child(1) {
@@ -143,31 +144,67 @@ main {
     -moz-animation: fadeIn 7s;
     -o-animation: fadeIn 7s;
     -ms-animation: fadeIn 7s;
-  }
-  @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-moz-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-webkit-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-o-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-ms-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
+    }
+    @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-moz-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-webkit-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-o-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-ms-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+
+/*Landing page media queries*/
+
+@media screen and (max-width: 650px) {
+
+    #intro {
+        width: 90%;
+        margin: 50px auto 10px auto;
+    }
+
+    #buttons {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .button {
+        width: 320px;
+        margin: 20px auto;
+    }
+
+    #login-button, #signup-button {
+        float: none;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .button {
+        width: 200px;
+    }
+}
+
+@media  screen and (max-width: 290px) {
+    #intro {
+        margin-top: 80px;
+    }
+}
 
 /* User Account Pages*/
 
