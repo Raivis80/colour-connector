@@ -126,11 +126,11 @@ def accept_friend(request):
             if FriendsList.objects.filter(user=user, friend=friend).exists():
                 message = 'User is already a friend'
                 messages.error(request, message)
-                return redirect('dashboard')
+                return redirect('profile')
             elif FriendsList.objects.filter(user=friend, friend=user).exists():
                 message = 'User is already a friend'
                 messages.error(request, message)
-                return redirect('dashboard')
+                return redirect('profile')
             try:
                 #accept friend request and save it
                 accept_request = FriendsList.objects.get(user=friend, friend=user, is_requested=True, is_accepted=False)
