@@ -50,21 +50,51 @@ As the site was designed with disabled people in mind, we decided to use a light
 
 The wireframes below lay out how the initial design of the project, and the layout of its pages:
 
-![index-page](media/wireframes/index-page.png)
+#### Desktop wireframes
 
-![index-logged-in-page](media/wireframes/index-page-logged-in.png)
+![index-page](media/wireframes/initial/desktop/index-page.png)
 
-![sign-up-page](media/wireframes/sign-up-page.png)
+![index-logged-in-page](media/wireframes/initial/desktop/index-page-logged-in.png)
 
-![user-profile-page](media/wireframes/user-profile-page.png)
+![sign-up-page](media/wireframes/initial/desktop/sign-up-page.png)
 
-![non-user-profile-page](media/wireframes/non-user-profile-page.png)
+![user-profile-page](media/wireframes/initial/desktop/user-profile-page.png)
 
-![about-page](media/wireframes/about-page.png)
+![non-user-profile-page](media/wireframes/initial/desktop/non-user-profile-page.png)
+
+![about-page](media/wireframes/initial/desktop/about-page.png)
+
+#### Mobile wireframes
+
+![index-page](media/wireframes/initial/mobile/index-page-mobile.png)
+
+![index-logged-in-page](media/wireframes/initial/mobile/index-page-logged-in-mobile.png)
+
+![sign-up-page](media/wireframes/initial/mobile/sign-up-page-mobile.png)
+
+![user-profile-page](media/wireframes/initial/mobile/user-profile-page-mobile.png)
+
+![non-user-profile-page](media/wireframes/initial/mobile/non-user-profile-page-mobile.png)
+
+![about-page](media/wireframes/initial/mobile/about-page-mobile.png)
 
 ### Final Wireframes
 
 As expected, the project's design changed significantly throughout the project. The final design wireframes are below:
+
+#### Desktop
+
+
+#### Mobile
+
+
+## Favicon
+
+The favicon used for this project is a miniaturised version of the image below:
+
+![favicon](static/images/colour-explosion-new.gif)
+
+We thought that since the project relies heavily on colour, an image of colours exploding was appropriate. 
 
 # Features
 
@@ -72,9 +102,11 @@ The project uses the Python Django framework to allow users to create accounts a
 
 Once signed in, users may search for friends and send friend requests
 
-Once a friend request has been accepted, linked users may send messages and notes to each other
+Once a friend request has been accepted, linked users may send messages and monochromatic images to each other
 
-The project also includes an About page, which includes links to the LinkedIn and Github profiles of the team. 
+When a user receives a message, it is displayed in their activty feed. The message contains a 200x200 image, and when clicked on, a modal activates and displays a larger version of the image. 
+
+The project also includes an About page, which includes links to the LinkedIn and Github profiles of the team 
 
 ### Fonts
 ### Colour Scheme
@@ -82,7 +114,7 @@ The project also includes an About page, which includes links to the LinkedIn an
 # Design
 
 
-## Favicon
+
 
 
 ## Header
@@ -144,11 +176,11 @@ The project was deployed to Heroku. Unfortunately, some weeks prior to the start
 # Version Control
 1.	The main repository was created by Adam Boley, and was then forked by all collaborators
 2.	Branch protection was added to ensure pull requests were reviewed before merging
-3.	Each team member ensured their development environment was linked by using the command:  git remote -v 
-4.	For each new feature, team members created a new branch: git checkout -b branch-name
-5.	To ensure this branch was being tracked: git push -u origin branch-name
-6.	 In order to update the project files in their own work space:  git pull upstream main this was important to limit the amount of merge conflicts a team member came across
-7.	Each team member used git add . git commit and git push to add, stage and save their work to their branch. 
+3.	Each team member ensured their development environment was linked by using the command:  `git remote -v` 
+4.	For each new feature, team members created a new branch: `git checkout -b branch-name`
+5.	To ensure this branch was being tracked: `git push -u origin branch-name`
+6.	 In order to update the project files in their own work space, the command `git pull upstream main` was run after each team member's pull request was approved.
+7.	Each team member used `git add .`, `git commit -m <message>` and `git push` to add, stage and save their work to their forked repositories. 
 8.	When a team member finished a feature they made a Pull Request.  A template was used for this Pull Request so all team members information was structured the same.  This Pull Request was then checked by another member of the team.  If a merge conflict arose the team member would be notified by a comment otherwise the branch was merged.
 
 ### Cloning
@@ -169,6 +201,8 @@ The project was deployed to Heroku. Unfortunately, some weeks prior to the start
 ## Resources
 
 [This site](https://amasty.com/blog/30-best-meet-the-team-pages-examples-and-trends/) was used as the inspiration of the about page
+
+[This Stack Overflow question](https://stackoverflow.com/questions/4941004/putting-images-with-options-in-a-dropdown-list) was used to create a drop down menu with users and avatar images
 
 ## Acknowledgements
 

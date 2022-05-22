@@ -56,16 +56,16 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item-active">
-                        <a class="nav-link active" href="#" aria-label="Go Home Page">Home</a>
+                        <a class="nav-link active" href="{% url 'home' %}" aria-label="Go Home Page">Home</a>
                     </li>
                     <li class="nav-item-active">
-                        <a href="#" class="nav-link" aria-label="Go About Page">About</a>
+                        <a href="{% url 'about' %}" class="nav-link" aria-label="Go About Page">About</a>
                     </li>
                     <li class="nav-item-active">
-                        <a href="#" class="nav-link" aria-label="Go Register Page">Register</a>
+                        <a href="{% url 'account_signup' %}" class="nav-link" aria-label="Go Register Page">Register</a>
                     </li>
                     <li class="nav-item-active">
-                        <a href="#" class="nav-link" aria-label="Go Log In Page">Login</a>
+                        <a href="{% url 'account_login' %}" class="nav-link" aria-label="Go Log In Page">Login</a>
                     </li>
                 </ul>
 
@@ -91,7 +91,7 @@
                     <!-- About Us Grid column -->
                     <div class="col-md-3">
                         <h6 class="text-uppercase font-weight-bold">
-                            <a class="link-dark" href="#" aria-label="Go About Us Page">About us</a>
+                            <a class="link-dark" href="{% url 'about' %}" aria-label="Go About Us Page">About us</a>
                         </h6>
                     </div>
 

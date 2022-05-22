@@ -78,7 +78,8 @@ main {
     width: 50%;
     height: auto;
     margin: 100px auto 20px auto;
-    /*border: 1px solid red;*/
+    font-family: 'Grape Nuts', cursive;
+
 }
 
 #buttons {
@@ -119,8 +120,12 @@ main {
 
 #intro p {
     color: blue;
-    font-weight: 500;
     text-align: center;
+}
+
+#intro p:nth-child(1) {
+    font-size: xx-large;
+    font-weight: 500;
 }
 
 #line-break {

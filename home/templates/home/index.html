@@ -6,7 +6,7 @@
     <video src="media/gifs/connecting-hands-trim-slomo.mp4" id="background-video" muted autoplay></video>
     
     <div id="intro" >
-        <p>Welcome to The Colour Connector</p>
+        <p>Sometimes words are not enough</p>
 
         <p>You can use this app to find your friends and send them notes</p>
 
@@ -14,12 +14,12 @@
     </div>
 
     <div id="buttons">
-        <a href="#">
+        <a href="{% url 'account_login' %}">
             <div id="login-button" class="button">
                 <p>Log in</p>
             </div>
         </a>
-        <a href="#">
+        <a href="{% url 'account_signup' %}">
             <div id="signup-button" class="button">
                 <p>Sign up</p>
             </div>
@@ -27,6 +27,7 @@
 
     </div>
     <br id="line-break">
+
 </main>
 
 {%  endblock content  %}
