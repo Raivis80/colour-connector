@@ -21,7 +21,7 @@
         height: 100vh;
         justify-content: center;
         align-items: self-end;
-        background-image: url('../static/images/404-image.jpg');
+        background-image: url('../static/images/404-image.jpg') no-repeat center;
     }
 
     .main {
@@ -42,7 +42,7 @@
 
             <h1>
                 <!-- Link to main website -->
-                <a href="#">Click Here to Continue to our
+                <a href="{% url 'home' %}">Click Here to Continue to our
                     Home Page</a>
                 </h1>
         </div>
