@@ -23,4 +23,15 @@ class FriendsList(models.Model):
     
     def __str__(self):
         return self.user.username + ' ' + self.friend.username
-        return self.user.username
+
+
+# Messages
+class Post(models.Model):
+    message = models.CharField(max_length=225, blank=True)
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')
+    color = models.CharField(max_length=225, blank=True)
+    image = models.CharField(max_length=225, blank=True)
+
+    def __str__(self):
+        return self.message

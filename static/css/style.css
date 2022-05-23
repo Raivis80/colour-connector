@@ -19,7 +19,7 @@ main {
     color: #000;
 }
 
-#logo a:hover {
+#logo:hover {
     color: #0277bd;
     letter-spacing: 1px;
 }
@@ -116,6 +116,7 @@ main {
     color: yellow;
 }
 
+
 #intro p {
     color: blue;
     text-align: center;
@@ -134,6 +135,10 @@ main {
 #buttons p {
     font-size: larger;
     text-align: center;
+}
+
+#buttons p:hover {
+    color:white;
 }
 
 #intro, .button {
