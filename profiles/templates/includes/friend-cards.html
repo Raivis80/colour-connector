@@ -4,7 +4,7 @@
     <a class="nav-link" href="{% url 'home' %}">
       <div class="card-body">
         <h5 class="card-title">
-          <i class="fas fa-store"></i>
+          <i class="fas fa-solid fa-user"></i>
           {% if user != friend.user %} {{ friend.user }} {% else %}
           {{friend.friend }} {% endif %}
         </h5>

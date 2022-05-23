@@ -8,12 +8,30 @@
     <p>Sometimes words are not enough</p>
 
     <p>You can use this app to find your friends and send them notes</p>
-
+    {% if request.user.is_authenticated %}
+    <p>Use the buttons below to send to go to your profile to send a lovely thought.</p>
+    {% else %}
     <p>Use the buttons below to log in or create an account</p>
+    {% endif %}
 </div>
 
 <div id="buttons">
-    <a href="{% url 'account_login' %}">
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'profile' %}">
+        <div id="login-button" class="button">
+            <p>Profile</p>
+        </div>
+    </a>
+
+    <a href="{% url 'account_logout' %}">
+        <div id="signup-button" class="button">
+            <p>Log Out</p>
+        </div>
+    </a>
+
+    {% else %}
+
+    <a href="{% url 'account_login' %}" class="nav-link" aria-label="Go Log In Page">
         <div id="login-button" class="button">
             <p>Log in</p>
         </div>
@@ -23,6 +41,8 @@
             <p>Sign up</p>
         </div>
     </a>
+
+    {% endif %}
 
 </div>
 <br id="line-break">

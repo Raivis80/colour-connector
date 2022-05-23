@@ -1,0 +1,11 @@
+{% if messages_received %} {% for message in messages_received  %}
+
+  <div class="card mb-3">
+      <div style="background-color: {{message.color}}" class="card-body">
+        <h5 class="card-title">
+          <i class="fas fa-solid fa-heart"></i>
+          {{message.message}}
+        </h5>
+      </div>
+  </div>
+{% endfor %} {% endif %}

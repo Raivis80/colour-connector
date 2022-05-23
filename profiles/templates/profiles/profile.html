@@ -1,13 +1,46 @@
 {% extends 'base.html' %} {% load static %} {% block extra_js %} {% endblock %}
 {% block content %}
 
-<div class="container h-100">
+<div class="container h-100" id="splashImage">
+
   <div class="h-100 align-items-center">
     <div class="col-12 text-center">
       <h1 class="heading">The Colour Connector</h1>
       <h4 class="heading">Welcome {{user.username}}</h4>
       <div class="panel panel-default">
         <div class="panel-heading">
+          <!-- Error Messages Container -->
+    {% if messages %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+               
+                        {% for message in messages %}
+                        {% with message.level as level %}
+                        {% if level == 40 %}
+                        <div class="alert alert-danger fade show" role="alert">
+                            <strong>Error!</strong> {{ message }}
+                            <a class="fs-2 me-auto" href="{% url 'profile' %}" >x</i></a>
+                        </div>
+                        
+                        {% elif level == 'success' %}
+                        <div class="alert alert-success fade show" role="alert">
+                            <strong>Success!</strong> {{ message }}
+                            <a class="fs-2 me-auto" href="{% url 'profile' %}" >x</a>
+                        </div>
+                        {% else %}
+                        <div class="alert alert-info fade show" role="alert">
+                            <strong>Info!</strong> {{ message }}
+                            <a class="fs-2 me-auto" href="{% url 'profile' %}" >x</a>
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                        {% endfor %}
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
           <p class="panel-title">Search for user</p>
         </div>
         {% comment %} Search for users {% endcomment %}
@@ -35,15 +68,7 @@
 
             <div class="col-12 col-sm-4">
               <div class="col-12 m-2 p-3 bg-info">
-                <div class="card">
-                  <a class="nav-link" href="{% url 'home' %}">
-                  <div class="card-body">
-                    <h5 class="card-title">
-                        <i class="fas fa-store"></i>
-                        Temprary
-                      </h5>
-                    </div>
-                  </a>
+                {% include 'includes/message.html' %}
                 </div>
               </div>
 
