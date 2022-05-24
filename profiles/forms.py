@@ -12,4 +12,4 @@ class AddFriendForm(forms.ModelForm):
 class SendMessage(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['sender', 'receiver', 'message', 'color']
+        fields = ['sender', 'receiver', 'message', 'color', 'image']

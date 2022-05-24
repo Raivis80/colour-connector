@@ -7,6 +7,7 @@
           <label for="search">Select Friend</label>
   
           <select name="receiver" class="form-select">
+            <option value="" selected disabled>Please Select a fiend</option>
             {% for friend in friend_list %}
             <option
               value="{% if user != friend.user %}{{ friend.user }}{% else %}{{friend.friend }}{% endif %}"
@@ -31,24 +32,36 @@
             </select>
           </div>
         </div>
-  
+
         <div class="col-12 col-sm-6">
           <div class="form-group">
             <div class="col">
               <label for="favcolor">Select your favorite color:</label>
             </div>
             <div class="col">
-              <select name="color" class="form-select" >
-                <option value="" selected disabled>Please Select a color</option>
-                <option value="#30336b">Blue</option>
-                <option value="#0c6b21">Green</option>
-                <option value="#e38421">Orange</option>
-                <option value="#800080">Purple</option>
-                <option value="#FF0000">Red</option>
-                <option value="#FFFF00">Yellow</option>
+              <select id="sellect_friend" onchange="change_color(this)" name="color" class="form-select" >
+                <option style="{}" value="" selected disabled>Please Select a color</option>
+                <option style="background-color: #30336b; color: #ffffff" value="#30336b">Blue</option>
+                <option style="background-color: #0c6b21; color: #ffffff" value="#0c6b21">Green</option>
+                <option style="background-color: #800080; color: #ffffff" value="#800080">Purple</option>
+                <option style="background-color: #ff0000; color: #ffffff" value="#ff0000">Red</option>
+                <option style="background-color: #ffa500; color: #ffffff" value="#ffa500">Orange</option>
+                <option style="background-color: #ff00ff; color: #ffffff" value="#ff00ff">Pink</option>
+                <option style="background-color: #ffff00; color: #000000" value="#ffff00">Yellow</option>
               </select>
             </div>
           </div>
+
+          <script>
+              function change_color(elem) {
+                elem.style.backgroundColor = elem.value;
+                if (elem.value == "#ffff00") {
+                  elem.style.color = "#000000";
+                } else {
+                  elem.style.color = "#FFFFFF";
+                }
+              }
+          </script>
   
           <input
             class="btn btn-sm btn-primary me-auto"

@@ -1,12 +1,14 @@
 {% if friend_list %} {% for friend in friend_list %}
 <div class="col-md-6">
   <div class="card">
-    <a class="nav-link" href="{% url 'home' %}">
+    <a
+      class="nav-link"
+      href="{% if user != friend.user.user %} {{friend.user.get_absolute_url}} {% else %} {{friend.friend.get_absolute_url}} {% endif %}"
+    >
       <div class="card-body">
         <h5 class="card-title">
           <i class="fas fa-solid fa-user"></i>
-          {% if user != friend.user %} {{ friend.user }} {% else %}
-          {{friend.friend }} {% endif %}
+          {% if user != friend.user.user %} {{friend.user.user}} {% else %}{{friend.friend.user}} {% endif %}
         </h5>
       </div>
     </a>

@@ -7,4 +7,5 @@ urlpatterns = [
     path('send_message/', views.send_message, name='send_message'),
     path('accept_friend/', views.accept_friend, name='accept_friend'),
     path('delete_friend/', views.delete_friend, name='delete_friend'),
+    path("<slug:slug>", views.friend_view, name="friend_view"),
 ]

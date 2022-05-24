@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %} {% block extra_js %} {% endblock %}
+{% block content %}
+
+<div class="container h-100" id="splashImage">
+  <div class="h-100 align-items-center">
+    <div class="col-12 text-center">
+      <h1 class="heading">The Colour Connector</h1>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="panel-title">Send Message</p>
+        </div>
+
+        {% comment %} Main content {% endcomment %}
+
+        <div class="row gx-3 gy-2">
+          <div class="col-12 col-sm-8">
+            <div class="col-12 m-2 p-3 bg-info">
+              {% comment %} profile section {% endcomment %} {% comment %} Send
+              message colours {% endcomment %} {% include
+              'includes/send-message.html' %} {% comment %} FriendList list
+              cards {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endblock %}
+</div>
