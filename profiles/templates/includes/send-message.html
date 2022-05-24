@@ -1,0 +1,69 @@
+<div class="row gx-3 gy-2 mb-3 border p-3">
+    {% if friend_list %}
+    <form action="{% url 'send_message' %}" method="POST">
+      {% csrf_token %}
+      <div class="row gx-3 gy-2">
+        <div class="col-12 col-sm-6">
+          <label for="search">Select Friend</label>
+  
+          <select name="receiver" class="form-select">
+            {% for friend in friend_list %}
+            <option
+              value="{% if user != friend.user %}{{ friend.user }}{% else %}{{friend.friend }}{% endif %}"
+            >
+              {% if user != friend.user %} {{ friend.user }} {% else %}
+              {{friend.friend }} {% endif %}
+            </option>
+            {% endfor %}
+          </select>
+  
+          <div class="form-group">
+            <label for="message">Select Message</label> 
+            <select name="message" class="form-select" >
+              <option value="" selected disabled>Please Select a Message</option>
+              <option value="Sending Positive Vibes">Sending Positive Vibes</option>
+              <option value="I Miss You">I Miss You</option>
+              <option value="Thinking Of You">Thinking Of You</option>
+              <option value="Wishing You A Happy Day">Wishing You A Happy Day</option>
+              <option value="Sending a Virtual Hug">Sending a Virtual Hug</option>
+              <option value="You Make Me Smile">You Make Me Smile</option>
+              <option value="Today Is Your Day!">Today Is Your Day!</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="col-12 col-sm-6">
+          <div class="form-group">
+            <div class="col">
+              <label for="favcolor">Select your favorite color:</label>
+            </div>
+            <div class="col">
+              <select name="color" class="form-select" >
+                <option value="" selected disabled>Please Select a color</option>
+                <option value="#30336b">Blue</option>
+                <option value="#0c6b21">Green</option>
+                <option value="#e38421">Orange</option>
+                <option value="#800080">Purple</option>
+                <option value="#FF0000">Red</option>
+                <option value="#FFFF00">Yellow</option>
+              </select>
+            </div>
+          </div>
+  
+          <input
+            class="btn btn-sm btn-primary me-auto"
+            type="submit"
+            value="Send"
+          />
+        </div>
+      </div>
+    </form>
+    {% else %}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p>Add friends to send messages</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  

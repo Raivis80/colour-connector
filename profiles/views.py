@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404, render
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_POST
 from django.contrib import messages
-from .models import UserProfile
+
+from .models import UserProfile, Post
+from .forms import SendMessage
 from django.db.models import Q
 
 from .models import FriendsList
@@ -38,7 +40,7 @@ def profile(request):
             message = 'Found user ' + friend.username
             messages.success(request, message)
 
-        except User.DoesNotExist:
+        except ObjectDoesNotExist:
             message = 'User not found'
             messages.error(request, message)
             return redirect('profile')
@@ -63,9 +65,14 @@ def profile(request):
     def get_search_form(user):
         form = User.objects.exclude(username=user.username).values_list('username', flat=True)
         return form
+
+    def get_messages_received(user):
+        messages_received = Post.objects.filter(receiver=user)
+        return messages_received
     
     
     context = {
+        'messages_received': get_messages_received(request.user),
         'friend': friend,
         'friend_list': get_all_friend_list(request.user),
         'requests_received': get_requests_received(request.user),
@@ -91,6 +98,15 @@ def add_friend(request):
             friend = form.cleaned_data['friend']
             # get the current user
             user = request.user
+            # Check if the user is already a friend
+            if FriendsList.objects.filter(user=user, friend=friend, is_accepted=True).exists():
+                message = 'User is already a friend'
+                messages.error(request, message)
+                return redirect('profile')
+            elif FriendsList.objects.filter(user=friend, friend=user, is_accepted=True).exists():
+                message = 'User is already a friend'
+                messages.error(request, message)
+                return redirect('profile')
             # create a new friend request
             try:
                 # create user's friend request object and save it
@@ -99,7 +115,7 @@ def add_friend(request):
                 message = 'Friend request sent to ' + friend.username
                 messages.success(request, message)
                 return redirect('profile')
-            except:
+            except ObjectDoesNotExist:
                 message = 'Something went wrong while adding friend'
                 messages.error(request, message)
                 return redirect('profile')
@@ -121,9 +137,17 @@ def accept_friend(request):
         if form.is_valid():
             # get the username of the friend from the form
             friend = form.cleaned_data['friend']
-            print(friend)
+            user = request.user
+            # Check if the user is already a friend
+            if FriendsList.objects.filter(user=user, friend=friend, is_accepted=True).exists():
+                message = 'User is already a friend'
+                messages.error(request, message)
+                return redirect('profile')
+            elif FriendsList.objects.filter(user=friend, friend=user, is_accepted=True).exists():
+                message = 'User is already a friend'
+                messages.error(request, message)
+                return redirect('profile')
             try:
-                user = request.user
                 #accept friend request and save it
                 accept_request = FriendsList.objects.get(user=friend, friend=user, is_requested=True, is_accepted=False)
                 accept_request.is_accepted = True
@@ -132,7 +156,7 @@ def accept_friend(request):
                 messages.success(request, message)
                 return redirect('profile')
             
-            except FriendsList.DoesNotExist:
+            except ObjectDoesNotExist:
                 message = 'Could not find friend request in the database'
                 messages.error(request, message)
                 return redirect('profile')
@@ -141,3 +165,50 @@ def accept_friend(request):
             messages.error(request, error)
             return redirect('profile')
 
+
+@require_POST
+def delete_friend(request):
+    """
+    Delete a friend from the current user's friend list
+    POST is required to get the username from the form
+    """
+    try:     
+        friend = User.objects.get(username=request.POST['friend'])
+        # get the current user
+        user = request.user
+        # delete the friend from the current user's friend list
+        delete_friend = FriendsList.objects.get(user=user, friend=friend.id)
+        delete_friend.delete()
+        message = 'Friend deleted'
+        messages.success(request, message)
+        return redirect('profile')
+    except ObjectDoesNotExist:
+        message = 'Could not find friend in the database'
+        messages.error(request, message)
+        return redirect('profile')
+
+
+@require_POST
+def send_message(request):
+    """
+    Send message to user requires POST
+    """
+    try:
+        # get the current user
+        sender = request.user
+        receiver = User.objects.get(username=request.POST['receiver'])
+        message = request.POST['message']
+        color = request.POST['color']
+        # delete the friend from the current user's friend list
+        get_send_message = Post(sender=sender,
+                                receiver=receiver,
+                                message=message,
+                                color=color)
+        get_send_message.save()
+        message = 'Messsage sent succesfully to ' + receiver.username
+        messages.success(request, message)
+        return redirect('profile')
+    except ObjectDoesNotExist:
+        message = "There was an issue sending message please try again later"
+        messages.error(request, message)
+        return redirect('profile')

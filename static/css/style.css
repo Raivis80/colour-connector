@@ -5,18 +5,32 @@ body {
 main {
     padding-top: 16px;
     padding-bottom: 10px;
-    height: 100vh;
 }
 
 /* Custom styling for nav bar */
 .navbar {
-    padding-bottom: 20px;
-    background-color: whitesmoke;
+    padding-top: 0;
+    padding-bottom: 0;
 }
+
+#logo {
+    font-family: 'Grape Nuts', cursive;
+    font-size: 30px;
+    color: #000;
+}
+
+#logo:hover {
+    color: #0277bd;
+    letter-spacing: 1px;
+}
+
 
 .navbar-light .navbar-nav .nav-link.active {
     color: #0277bd;
-    border-bottom: 1px solid;
+}
+
+#navbarNav a {
+    color: #000;
 }
 
 #navbarNav a:hover {
@@ -27,7 +41,7 @@ main {
 /* Custom styling for footer */
 
 #footer {
-    background-color: #3f51b5;
+    background: rgba(16, 16, 16, .03);
 }
 
 #footer a {
@@ -36,14 +50,11 @@ main {
 
 #footer a:hover {
     letter-spacing: 1px;
+    color: #0277bd;
 }
 
 #footer .btn-primary {
     border-radius: 50px
-}
-
-#copyright {
-    padding-bottom: 10px;
 }
 
 /* Index.html style rules*/
@@ -54,7 +65,7 @@ main {
     height: 100%;
     object-fit: fill;
     /* Give some opacitiy so not too dominating when text laid on top */
-    opacity: 0.7;
+    /* opacity: 0.7; */
     /* Use z-index so video sits behind the main title text on top */
     z-index: -1;
     top: 0;
@@ -65,7 +76,8 @@ main {
     width: 50%;
     height: auto;
     margin: 100px auto 20px auto;
-    /*border: 1px solid red;*/
+    font-family: 'Grape Nuts', cursive;
+
 }
 
 #buttons {
@@ -88,20 +100,32 @@ main {
     height: 60px;
 }
 
-a {
+#buttons a {
     text-decoration: none;
 }
 
-a div {
+#buttons a div {
     background-color: yellow;
     border-radius: 10px;
     padding: 10px;
+    border-style: outset;
 }
+
+#buttons a div:hover {
+    background-color: blue;
+    color: yellow;
+}
+
 
 #intro p {
     color: blue;
-    font-weight: 500;
     text-align: center;
+    font-size: x-large;
+}
+
+#intro p:nth-child(1) {
+    font-size: xx-large;
+    font-weight: 500;
 }
 
 #line-break {
@@ -113,40 +137,173 @@ a div {
     text-align: center;
 }
 
+#buttons p:hover {
+    color:white;
+}
+
 #intro, .button {
     animation: fadeIn 7s;
     -webkit-animation: fadeIn 7s;
     -moz-animation: fadeIn 7s;
     -o-animation: fadeIn 7s;
     -ms-animation: fadeIn 7s;
-  }
-  @keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-moz-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-webkit-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-o-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
-  
-  @-ms-keyframes fadeIn {
-    0% {opacity:0;}
-    100% {opacity:1;}
-  }
+    }
+    @keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-moz-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-webkit-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-o-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+    
+    @-ms-keyframes fadeIn {
+        0% {opacity:0;}
+        100% {opacity:1;}
+    }
+
+/*Landing page media queries*/
+
+@media screen and (max-width: 650px) {
+
+    #intro {
+        width: 90%;
+        margin: 50px auto 10px auto;
+    }
+
+    #buttons {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .button {
+        width: 320px;
+        margin: 20px auto;
+    }
+
+    #login-button, #signup-button {
+        float: none;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .button {
+        width: 200px;
+    }
+}
+
+@media  screen and (max-width: 290px) {
+    #intro {
+        margin-top: 80px;
+    }
+}
 
 /* User Account Pages*/
 
 .account-body {
-    background: url('/static/images/colour-explosion-new.gif') no-repeat right center;
+    background: url('../images/colour-explosion-new.gif') no-repeat right center;
+}
+
+/*About Us Page*/
+
+img {
+    max-width: 100%;
+}
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+p {
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.8rem;
+}
+a {
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+a:hover {
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+section.aboutUs {
+    position: relative;
+    padding: 50px 0 0px 0;
+}
+section.aboutUs .aboutInner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+section.aboutUs .aboutInner .aboutBlock {
+    position: relative;
+    text-align: center;
+    margin-bottom: 50px;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+section.aboutUs .aboutInner .aboutBlock .images {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+section.aboutUs .aboutInner .aboutBlock .images img{
+    height: 250px;
+    border-radius: 50%;
+}
+section.aboutUs .aboutInner .aboutBlock h3 {
+    font-size: 18px;
+    color: rgba(177,69,55, 1);
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+section.aboutUs .aboutInner .aboutBlock p {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top: 0;
+}
+section.aboutUs .aboutInner .aboutBlock .social ul {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+section.aboutUs .aboutInner .aboutBlock .social ul li{
+    padding: 0 15px;
+    list-style: none;
+}
+
+#splashImage {
+    background: url('../images/colour-explosion-new.gif') no-repeat center;
+}
+
+
+@media screen and (max-width: 768px) {
+    section.aboutUs .aboutInner .aboutBlock {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+@media screen and (max-width: 540px) {
+    section.aboutUs .aboutInner .aboutBlock {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
 }
