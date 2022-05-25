@@ -1,0 +1,38 @@
+<div class="row mt-3">
+
+    <div class="col-12 col-md-4">
+      {% include 'includes/forms/send-request-form.html' %}
+    </div>
+    
+    <div class="col-12 col-md-4">
+        <form
+          class="form mx-auto searh-form"
+          method="POST"
+          action="{% url 'profile' %}"
+          >
+          <div class="input-group mb-3 col-12">
+            {% csrf_token %}
+
+          <input
+              type="text"
+              class="search form-control"
+              name="search"
+              placeholder="Search for user..."
+              aria-label="Search for User"
+            />
+            
+            <button
+            class="btn btn-primary"
+            type="submit"
+            aria-label="Submit your search query"
+            >
+            <i class="fas fa-search"></i>
+              search
+            </button>
+          </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-4"> 
+      {% include 'includes/accept-friend.html' %}
+    </div>
+  </row>

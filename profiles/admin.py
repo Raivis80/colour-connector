@@ -1,20 +1,18 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from .models import FriendsList, Post, UserProfile, Color, Message, Image
+from .models import FriendRequest, Post, UserProfile, Color, Message, Image
 
 
 # Register your models here.
 
 class UserProfileAdmin(admin.StackedInline):
     model = UserProfile
-    fields = ('user', 'fav_color', 'slug')
+    can_delete = False
 
-
-@admin.register(FriendsList)
+@admin.register(FriendRequest)
 class FriendsListAdmin(admin.ModelAdmin):
-    model = FriendsList
-    list_display = ('user', 'friend', 'is_requested', 'is_accepted')
+    model = FriendRequest
 
 
 @admin.register(Color)
@@ -34,9 +32,8 @@ class MessageInline(admin.ModelAdmin):
 
 class PostAdmin(admin.ModelAdmin):
     model = Post
-    list_display = ('sender', 'receiver', 'message', 'color', 'image')
 
-    
+
 class UserAdmin(BaseUserAdmin):
         inlines = (UserProfileAdmin,)
         

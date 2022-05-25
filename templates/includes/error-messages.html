@@ -1,0 +1,89 @@
+{% if messages %}
+<div
+  aria-live="polite"
+  aria-atomic="true"
+  class="bg-dark position-relative bd-example-toasts"
+>
+  <div
+    class="toast-container position-absolute top-0 end-0 p-3 p-3"
+    id="toastPlacement"
+  >
+    {% for message in messages %} 
+    {% with message.level as level %} 
+    {% if level == 40 %}
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex alert-danger">
+        <div class="toast-body">{{ message }}</div>
+        <button
+          type="button"
+          class="btn-close me-2 m-auto"
+          data-bs-dismiss="toast"
+          data-bs-autohide='true'
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+    {% elif level == 30 %}
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex alert-warning">
+        <div class="toast-body">{{ message }}</div>
+        <button
+          type="button"
+          class="btn-close me-2 m-auto"
+          data-bs-dismiss="toast"
+          data-bs-autohide='true'
+          aria-label="Close"
+        ></button>
+      </div>
+      {% elif level == 20 %}
+      <div
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="true"
+      >
+        <div class="d-flex alert-info">
+          <div class="toast-body">{{ message }}</div>
+          <button
+            type="button"
+            class="btn-close me-2 m-auto"
+            data-bs-dismiss="toast"
+            data-bs-autohide='true'
+            aria-label="Close"
+          ></button>
+        </div>
+        {% else %}
+        <div
+          class="toast"
+          role="alert"
+          aria-live="assertive"
+          aria-atomic="true"
+        >
+          <div class="d-flex alert-success">
+            <div class="toast-body">{{ message }}</div>
+            <button
+              type="button"
+              class="btn-close me-2 m-auto"
+              data-bs-dismiss="toast"
+              data-bs-autohide='true'
+              aria-label="Close"
+            ></button>
+          </div>
+          {% endif %} {% endwith %} {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<script>
+  onload = function() {
+    var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+    var toastList = toastElList.map(function (toastEl) {
+      return new bootstrap.Toast(toastEl);
+    });
+    toastList.forEach((toast) => toast.show());
+  }
+</script>

@@ -290,8 +290,10 @@ section.aboutUs .aboutInner .aboutBlock .social ul li{
     list-style: none;
 }
 
+
 #splashImage {
     background: url('../images/colour-explosion-new.gif') no-repeat center;
+    background-size: cover;
 }
 
 

@@ -1,5 +1,5 @@
 from django.urls import path
-from . import views
+from .import views
 
 urlpatterns = [
     path('', views.profile, name='profile'),
@@ -7,5 +7,6 @@ urlpatterns = [
     path('send_message/', views.send_message, name='send_message'),
     path('accept_friend/', views.accept_friend, name='accept_friend'),
     path('delete_friend/', views.delete_friend, name='delete_friend'),
-    path("<slug:slug>", views.friend_view, name="friend_view"),
+    path("<slug:slug>", views.user_profile, name="user_profile"),
+    path('<slug:slug>/', views.post_detail, name='post_detail'),
 ]

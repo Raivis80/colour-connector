@@ -1,82 +1,15 @@
+{% load django_bootstrap5 %}
+
 <div class="row gx-3 gy-2 mb-3 border p-3">
-    {% if friend_list %}
-    <form action="{% url 'send_message' %}" method="POST">
+    <form action="{% url 'send_message' %}" method="post" class="form">
       {% csrf_token %}
-      <div class="row gx-3 gy-2">
-        <div class="col-12 col-sm-6">
-          <label for="search">Select Friend</label>
-  
-          <select name="receiver" class="form-select">
-            <option value="" selected disabled>Please Select a fiend</option>
-            {% for friend in friend_list %}
-            <option
-              value="{% if user != friend.user %}{{ friend.user }}{% else %}{{friend.friend }}{% endif %}"
-            >
-              {% if user != friend.user %} {{ friend.user }} {% else %}
-              {{friend.friend }} {% endif %}
-            </option>
-            {% endfor %}
-          </select>
-  
-          <div class="form-group">
-            <label for="message">Select Message</label> 
-            <select name="message" class="form-select" >
-              <option value="" selected disabled>Please Select a Message</option>
-              <option value="Sending Positive Vibes">Sending Positive Vibes</option>
-              <option value="I Miss You">I Miss You</option>
-              <option value="Thinking Of You">Thinking Of You</option>
-              <option value="Wishing You A Happy Day">Wishing You A Happy Day</option>
-              <option value="Sending a Virtual Hug">Sending a Virtual Hug</option>
-              <option value="You Make Me Smile">You Make Me Smile</option>
-              <option value="Today Is Your Day!">Today Is Your Day!</option>
-            </select>
-          </div>
-        </div>
+      <input type="hidden" name="receiver" value="{{friend.user.id}}">
 
-        <div class="col-12 col-sm-6">
-          <div class="form-group">
-            <div class="col">
-              <label for="favcolor">Select your favorite color:</label>
-            </div>
-            <div class="col">
-              <select id="sellect_friend" onchange="change_color(this)" name="color" class="form-select" >
-                <option style="{}" value="" selected disabled>Please Select a color</option>
-                <option style="background-color: #30336b; color: #ffffff" value="#30336b">Blue</option>
-                <option style="background-color: #0c6b21; color: #ffffff" value="#0c6b21">Green</option>
-                <option style="background-color: #800080; color: #ffffff" value="#800080">Purple</option>
-                <option style="background-color: #ff0000; color: #ffffff" value="#ff0000">Red</option>
-                <option style="background-color: #ffa500; color: #ffffff" value="#ffa500">Orange</option>
-                <option style="background-color: #ff00ff; color: #ffffff" value="#ff00ff">Pink</option>
-                <option style="background-color: #ffff00; color: #000000" value="#ffff00">Yellow</option>
-              </select>
-            </div>
-          </div>
-
-          <script>
-              function change_color(elem) {
-                elem.style.backgroundColor = elem.value;
-                if (elem.value == "#ffff00") {
-                  elem.style.color = "#000000";
-                } else {
-                  elem.style.color = "#FFFFFF";
-                }
-              }
-          </script>
-  
-          <input
-            class="btn btn-sm btn-primary me-auto"
-            type="submit"
-            value="Send"
-          />
-        </div>
-      </div>
-    </form>
-    {% else %}
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <p>Add friends to send messages</p>
-      </div>
-    </div>
-    {% endif %}
-  </div>
+      {% bootstrap_field form.color %}
+      {% bootstrap_field form.message %}
+    
+      {% bootstrap_button button_type="submit" content="OK" %}
+      {% bootstrap_button button_type="reset" content="Cancel" %}
+    <form>
+</div>
   

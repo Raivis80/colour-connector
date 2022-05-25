@@ -1,0 +1,12 @@
+{% if friend %}
+    <div class="panel panel-default"> 
+        <form action="{% url 'add_friend' %}" method="post">        
+            {% csrf_token %}
+            <input type="hidden" name="friend" value="{{friend.id}}" />
+            <input
+            type="submit"
+            class="btn btn-success btn-block"
+            value="send request to: {{friend.user.username}}"/>
+        </form>
+    </div>
+{% endif %}

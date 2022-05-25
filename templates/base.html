@@ -30,7 +30,7 @@
 
     <!-- My CSS link -->
     <link rel="stylesheet" href="{%  static 'css/style.css'  %}">
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title> Colour Connector
         {% block title %}
         {% endblock title %}
@@ -79,7 +79,9 @@
         </div>
     </nav>
 
-
+     <!-- Error Messages Container -->
+          
+    {% include 'includes/error-messages.html' %}
     <main>
         {% block content %}
         <!-- Content from other html pages goes here -->

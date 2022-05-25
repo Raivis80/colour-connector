@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %} {% block extra_js %} {% endblock %}
+{% block content %}
+
+<div class="container h-100">
+  <div class="h-100">
+    <div class="col-12 text-center">
+      <h1 class="heading text-capitalize">{{friend.slug}} Profile</h1>
+  
+      <div class="row gx-3 gy-2">
+          <div class="col-12 col-sm-8 mx-auto">
+            <div class="col-12 m-2 p-3 bg-info">
+              <h5 class="card-title">{{friend.slug}}</h5>
+              <p class="card-text">Favorite colour {{friend.fav_color}}</p>
+            </div>
+          </div>
+        </div>
+    
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <p class="panel-title text-capitalize">
+            Send Message to {{friend.slug}}
+          </p>
+        </div>
+
+        {% comment %} Main content {% endcomment %}
+
+        <div class="row gx-3 gy-2">
+          <div class="col-12 col-sm-8 mx-auto">
+            <div class="col-12 m-2 p-3 bg-info">
+              {% include 'includes/send-message.html' %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

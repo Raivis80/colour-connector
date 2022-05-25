@@ -22,36 +22,35 @@ class UserProfile(models.Model):
     """
     The User Profile
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     fav_color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True)
     
-    slug = models.SlugField(unique=True, default=uuid.uuid4)
-
-    def __str__(self):
-        return self.user.username
+    slug = models.SlugField(unique=True)
     
     def get_absolute_url(self):
-        return reverse("friend_view", kwargs={"slug": self.slug})
-    
-    def save(self, *args, **kwargs):  # new
+        return reverse('user_profile', args=[self.slug])
+         
+    def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.user.username)
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.user.username
 
 
 # Friend list modal
-class FriendsList(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    friend = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name='friend')
+class FriendRequest(models.Model):
+    """
+    The Friend List
+    """
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='request_user')
+    friend = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='friend')
     is_requested = models.BooleanField(default=False)
     is_accepted = models.BooleanField(default=False)
     
-    slug = models.SlugField(unique=True, default=uuid.uuid4)
-    
     def __str__(self):
-        return self.user.user.username + ' ' + self.friend.user.username
+        return self.user.user.username
 
 
     
@@ -75,20 +74,16 @@ class Message(models.Model):
 class Post(models.Model):
     color = models.ForeignKey(Color, on_delete=models.CASCADE , null=True)
     message = models.ForeignKey(Message, on_delete=models.CASCADE, null=True)
-    sender = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    sender = models.ForeignKey(UserProfile, on_delete=models.CASCADE, blank=True, null=True)
     receiver = models.ForeignKey(
-        UserProfile, on_delete=models.CASCADE, related_name='receiver')
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, null=True)
+        UserProfile, on_delete=models.CASCADE, related_name='receiver', blank=True, null=True)
+    image = models.ForeignKey(
+        Image, on_delete=models.CASCADE, blank=True, null=True)
     
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, default=uuid.uuid4)
     
     def get_absolute_url(self):
         return reverse("post_detail", kwargs={"slug": self.slug})
-
-    def save(self, *args, **kwargs):  # new
-        if not self.slug:
-            self.slug = slugify(self.sender.user.username)
-        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.message
@@ -102,6 +97,6 @@ def create_user_profile(sender, instance, created, **kwargs):
         
     else:
         try:
-            instance.userprofile.save()
+            instance.profile.save()
         except UserProfile.DoesNotExist:
             UserProfile.objects.create(user=instance)
