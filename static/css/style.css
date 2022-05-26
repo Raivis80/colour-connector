@@ -1,8 +1,17 @@
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 50px);
     font-family: 'Alata', sans-serif;
+    color: #333;
 }
 
 main {
+    min-height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding-top: 16px;
     padding-bottom: 10px;
 }
@@ -12,6 +21,7 @@ main {
     padding-top: 0;
     padding-bottom: 0;
 }
+
 
 #logo {
     font-family: 'Grape Nuts', cursive;

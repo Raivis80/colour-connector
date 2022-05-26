@@ -1,3 +1,5 @@
+{% load static %}
+
 {% load django_bootstrap5 %}
 
 <div class="row gx-3 gy-2 mb-3 border p-3">
@@ -5,11 +7,33 @@
       {% csrf_token %}
       <input type="hidden" name="receiver" value="{{friend.user.id}}">
 
-      {% bootstrap_field form.color %}
+      <span>Choice Colour</span>
+      <div class="d-flex mt-1">
+          {% csrf_token %}
+          
+          <input id="color" type="hidden" name="color" value="">
+         
+          {% for color in colors %}
+          <div onclick="choice(this)" class="color-picker-friend" style="background-color: {{ color }}"></div>
+          {% endfor %}
+      </div>
       {% bootstrap_field form.message %}
     
       {% bootstrap_button button_type="submit" content="OK" %}
       {% bootstrap_button button_type="reset" content="Cancel" %}
     <form>
 </div>
-  
+
+<script>
+    function choice(elem) {
+        allElements = document.getElementsByClassName("color-picker-friend");
+        var color = elem.style.backgroundColor;
+        document.getElementById("color").value = color;
+        elem.classList.add("active");
+        for (var i = 0; i < allElements.length; i++) {
+            if (allElements[i] != elem) {
+                allElements[i].classList.remove("active");
+            }
+        }
+    }
+</script>

@@ -1,10 +1,10 @@
-{% extends 'base.html' %} {% load static %} {% block extra_js %} {% endblock %}
+{% extends 'base.html' %} 
+{% load static %}
+
 {% block content %}
 
-<div class="container h-100">
+<div class="container text-center h-100">
 
-  <div class="h-100 align-items-center">
-    <div class="col-12 text-center">
       <h1 class="heading">The Colour Connector</h1>
       <h4 class="heading">Welcome {{user.username}}</h4>
       <div class="panel panel-default">
@@ -22,25 +22,50 @@
           
           <div class="col-12 col-sm-8">
             <div class="col-12 m-2 p-3 bg-info">
-                {% comment %} FriendList list cards {% endcomment %}
-              <div class="row gx-3 gy-2">
-                {% include 'includes/friend-list.html' %}
+              {% comment %} My profile dashboard fav_color {% endcomment %}
+
+                <div class="row gx-3 gy-2 border-bottom py-3">
+                  <div class="col-6">
+                    <p>
+                      <strong>Username:</strong> </br>{{user.username}}
+                    </p>
+                  </div>
+
+                  <div class="col-6 pb-3">
+                    {% include 'includes/forms/pick-a-color-form.html' %}
+                  </div>
+
+                </div>	
+           
+                <h3 class="text-center">Your Connections</h3>	  
+                  {% comment %} FriendList list cards {% endcomment %}
+                <div class="row gx-3 gy-2 py-3">
+                  {% include 'includes/friend-list.html' %}
+                </div>
               </div>
             </div>
-          </div>
 
             <div class="col-12 col-sm-4">
               <div class="col-12 m-2 p-3 bg-info">
                 {% include 'includes/received-messages.html' %}
-                </div>
               </div>
             </div>
-  
-        </div>
-
-      </div>
     </div>
   </div>
 </div>
+
+<script>
+  function pickFunc() {
+    picker = document.querySelectorAll('.color-picker');
+    picker.forEach(color => {
+      color.addEventListener('click', function() {
+        document.querySelector('#fav_color').value = color.style.backgroundColor;
+        this.classList.toggle('show');
+        document.getElementById("fav_color_form").submit();
+      });
+      color.classList.toggle('show');
+    });
+  }
+</script>
 
 {% endblock %}

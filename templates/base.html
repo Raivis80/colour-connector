@@ -29,7 +29,10 @@
         rel="stylesheet">
 
     <!-- My CSS link -->
+    <link rel="stylesheet" href="{%  static 'css/profile.css'  %}">
     <link rel="stylesheet" href="{%  static 'css/style.css'  %}">
+    {% block extra_css %}
+    {% endblock %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title> Colour Connector
         {% block title %}
@@ -37,7 +40,7 @@
     </title>
 </head>
 
-<body class="d-flex flex-column min-vh-100" id="splashImage">
+<body id="splashImage">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container">
@@ -113,7 +116,8 @@
     </script>
         <!-- Fontawesome link -->
     <script src="https://kit.fontawesome.com/b83175b9a4.js" crossorigin="anonymous"></script>
-
+    {% block extra_js %} 
+    {% endblock %}
 
 </body>
 

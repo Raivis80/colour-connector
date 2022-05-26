@@ -1,0 +1,23 @@
+{% comment %} Create color choice pop feature with 6 colors {% endcomment %}
+{% load static %}
+
+{% if fav_color %}
+<strong>My fav Colour</strong>
+<div onclick="pickFunc()" class="mx-auto color-choice" style="background-color: {{fav_color}}"></div> 
+{% else %}
+<em>Choice your fav colour</em> <button onclick="pickFunc()">*</button>
+{% endif %}
+
+<div class="row position-relative">
+    <div class="col-md-12 position-absolute top-50 start-0">
+        <form id="fav_color_form" action="{% url 'profile' %}" method="post">
+        <div class="d-flex pt-3">
+            {% csrf_token %}
+            <input id="fav_color" type="hidden" name="color" value="">
+            {% for color in colors %}
+            <div class="color-picker" style=" background-color: {{ color }}"></div>
+            {% endfor %}
+        </div>
+    </form>
+    </div>
+</div>

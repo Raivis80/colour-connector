@@ -31,26 +31,44 @@ def profile(request):
 
     friend = None
     if request.method == 'POST':
-        term = request.POST['search']
-        # Check if the term is is not current user
-        if term == request.user.username:
-            message = 'You cannot add yourself as a friend'
-            messages.warning(request, message)
-            return redirect('profile')
-        try:
-            # search for single user with username excluding the current user
-            friend = UserProfile.objects.get(user__username=term)
-            message = 'Found user ' + friend.user.username
-            messages.success(request, message)
+        if not 'color' in request.POST:
+            term = request.POST['search']
+            # Check if the term is is not current user
+            if term == request.user.username:
+                message = 'You cannot add yourself as a friend'
+                messages.warning(request, message)
+                return redirect('profile')
+            try:
+                # search for single user with username excluding the current user
+                friend = UserProfile.objects.get(user__username=term)
+                message = 'Found user ' + friend.user.username
+                messages.success(request, message)
 
-        except ObjectDoesNotExist:
-            message = 'User not found'
-            messages.error(request, message)
-            return redirect('profile')
+            except ObjectDoesNotExist:
+                message = 'User not found'
+                messages.error(request, message)
+                return redirect('profile')
+        else:
+            # Create change user fav color
+            # ger color from form data and save it to the database
+            try:
+                color = request.POST['color']
+                color_instance = Color.objects.get(color=color)
+                user.fav_color = color_instance
+                user.save()
+                message = 'Color changed successfully to:' + color
+                messages.success(request, message)
+            except ObjectDoesNotExist:
+                message = 'Color not found'
+                messages.error(request, message)
+        
+    colors = Color.objects.all()
 
     # get friend requests for the current user
     def get_requests_received(user):
         requests_received = FriendRequest.objects.filter(friend=user, is_accepted=False)
+        if requests_received:
+            return reversed((requests_received))
         return requests_received
 
     # get friend list for the current user and friends of the current user
@@ -73,10 +91,12 @@ def profile(request):
 
     def get_messages_received(user):
         messages_received = Post.objects.filter(receiver=user)
-        return messages_received
-    
+        return reversed(messages_received)
     
     context = {
+        'action': 'profile',
+        'fav_color': user.fav_color,
+        'colors': colors,
         'messages_received': get_messages_received(user),
         'friend': friend,
         'friend_list': get_all_friend_list(user),
@@ -84,7 +104,6 @@ def profile(request):
         'requests_sent': get_requests_sent(user),
         'form': get_search_form(user)
     }
-
     return render(request, 'profiles/profile.html', context)
 
 
@@ -97,9 +116,12 @@ def user_profile(request, slug):
     """
     # find the user with the search query
     friend = get_object_or_404(UserProfile, slug=slug)
+    # Get color list
+    colors = Color.objects.all()
     form = SendMessage()
     # create user views
     context = {
+        'colors': colors,
         'friend': friend,
         'form': form
     }
@@ -123,7 +145,7 @@ def add_friend(request):
         friend = get_object_or_404(UserProfile, user__username=friend)
         # Check if the user is already a friend
         if FriendRequest.objects.filter(user=user, friend=friend, is_requested=True).exists():
-            message = 'Friend request already sent'
+            message = 'Friend request pending or you are already friends'
             messages.error(request, message)
             return redirect('profile')
         elif FriendRequest.objects.filter(user=friend, friend=user, is_requested=True).exists():
@@ -143,7 +165,7 @@ def add_friend(request):
             messages.error(request, message)
             return redirect('profile')
     else:
-        message = 'Invalid form'
+        message = 'Invalid form data please try again'
         messages.error(request, message)
         return redirect('profile')
 
@@ -200,25 +222,25 @@ def send_message(request):
     Send message to user requires POST
     """
     form = SendMessage(request.POST)
+
     try:
         # get the current user
         sender = get_object_or_404(UserProfile, user=request.user)
         receiver = UserProfile.objects.get(user__id=request.POST['receiver'])
         message = request.POST['message']
         color = request.POST['color']
-        color_instance = Color.objects.get(id=color)
+        color_instance = Color.objects.get(color=color)
         message_instance = Message(id=message)
-        print(color_instance)
         get_send_message = Post(
             sender=sender, receiver=receiver, message=message_instance, color=color_instance)
         get_send_message.save()
         
         message = 'Message sent successfully to ' + receiver.user.username
         messages.success(request, message)
-        return redirect('profile')
+        return redirect(request.META.get('HTTP_REFERER'))
     except ObjectDoesNotExist:
         message = "There was an issue sending message please try again later"
-        messages.error(request, message)
+        return redirect(request.META.get('HTTP_REFERER'))
         return redirect('profile')
 
 
