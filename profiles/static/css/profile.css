@@ -1,26 +1,54 @@
 /* Profile */
+.mood-picker svg,
+.mood-picker,
 .color-picker {
     cursor: pointer;
     width: 100%;
     height: 0;
+    transition: all 0.3s;
 }
+
+.pointer{
+    cursor: pointer;
+}
+
+.form-width{
+    margin: 0 auto;
+    max-width: 500px;
+}
+
 
 .color-picker-friend {
     cursor: pointer;
     width: 100%;
     height: 50px;
-    transition: all cubic-bezier(.02, .75, .93, .48) 0.3s;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
+    transition: all 0.3s;
 }
 
-.color-picker-friend:hover,
-.color-picker:hover {
+.mood-picker,
+.mood-choice{
+    cursor: pointer;
     border-radius: 4px;
-    transform: scale(1.2);
+    width: 100%;
+    max-width: 60px;
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
+    transition: all 0.3s;
 }
 
+.btn,
+.color-picker,
+.color-choice,
+.nav-link,
+.card{
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
+}
+
+
+.mood-picker .show,
 .show {
-    transition: all cubic-bezier(.02, .75, .93, .48) 0.3s;
-    height: 50px;
+    transition: all 0.3s;
+    height: 50px !important;
 }
 
 .colors{
@@ -29,15 +57,23 @@
 
 .color-choice{
     height: 50px;
-    width: 50px;
-}
-
-.color-choice:hover{
-    transform: scale(1.2);
-    transition: all cubic-bezier(.02, .75, .93, .48) 0.3s;
+    width: 100%;
+    max-width: 60px;
 }
 
 .active{
-    border-radius: 4px;
-    transform: scale(1.2);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.493);
+}
+
+.mood-choice:hover,
+.btn:hover,
+.nav-link:hover,
+.card:hover,
+.color-choice:hover,
+.color-choice:hover,
+.mood-picker:hover,
+.color-picker-friend:hover,
+.color-picker:hover {
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.493);
+    transition: all 0.3s;
 }

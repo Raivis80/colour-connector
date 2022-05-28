@@ -2,25 +2,24 @@
 
 {% load django_bootstrap5 %}
 
-<div class="row gx-3 gy-2 mb-3 border p-3">
-    <form action="{% url 'send_message' %}" method="post" class="form">
+<div class="row gx-3 gy-2 mb-3 border rounded form-width p-3 ">
+    <form class=" " action="{% url 'send_message' %}" method="post" class="form">
       {% csrf_token %}
       <input type="hidden" name="receiver" value="{{friend.user.id}}">
 
       <span>Choice Colour</span>
-      <div class="d-flex mt-1">
+      <div class="d-flex mt-1 mx-auto">
           {% csrf_token %}
           
           <input id="color" type="hidden" name="color" value="">
          
           {% for color in colors %}
-          <div onclick="choice(this)" class="color-picker-friend" style="background-color: {{ color }}"></div>
+          <div onclick="choice(this)" class="color-picker-friend rounded" style="background-color: {{ color }}"></div>
           {% endfor %}
       </div>
       {% bootstrap_field form.message %}
     
-      {% bootstrap_button button_type="submit" content="OK" %}
-      {% bootstrap_button button_type="reset" content="Cancel" %}
+      {% bootstrap_button button_type="submit" content="SEND" %}
     <form>
 </div>
 

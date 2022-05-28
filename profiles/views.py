@@ -31,7 +31,7 @@ def profile(request):
 
     friend = None
     if request.method == 'POST':
-        if not 'color' in request.POST:
+        if 'search' in request.POST:
             term = request.POST['search']
             # Check if the term is is not current user
             if term == request.user.username:
@@ -43,12 +43,11 @@ def profile(request):
                 friend = UserProfile.objects.get(user__username=term)
                 message = 'Found user ' + friend.user.username
                 messages.success(request, message)
-
             except ObjectDoesNotExist:
                 message = 'User not found'
                 messages.error(request, message)
                 return redirect('profile')
-        else:
+        elif 'color' in request.POST:
             # Create change user fav color
             # ger color from form data and save it to the database
             try:
@@ -58,11 +57,25 @@ def profile(request):
                 user.save()
                 message = 'Color changed successfully to:' + color
                 messages.success(request, message)
+                return redirect('profile')
             except ObjectDoesNotExist:
                 message = 'Color not found'
                 messages.error(request, message)
-        
-    colors = Color.objects.all()
+                return redirect('profile')
+        else:
+            # create mood change request and save it to the user profile
+            try:
+                mood = request.POST['mood']
+                mood_instance = Mood.objects.get(mood=mood)
+                user.mood = mood_instance
+                user.save()
+                message = 'Mood changed successfully'
+                messages.success(request, message)
+                return redirect('profile')
+            except ObjectDoesNotExist:
+                message = 'Mood not found'
+                messages.error(request, message)
+                return redirect('profile')
 
     # get friend requests for the current user
     def get_requests_received(user):
@@ -75,6 +88,7 @@ def profile(request):
     def get_all_friend_list(user):
         friend_list = FriendRequest.objects.filter(
             Q(user=user, is_accepted=True) | Q(friend=user, is_accepted=True))
+        # exclude the current user from the friend list
         return friend_list
     
     # get friend requests sent by the current user
@@ -94,9 +108,11 @@ def profile(request):
         return reversed(messages_received)
     
     context = {
+        'mood': user.mood,
+        'moods': Mood.objects.all(),
         'action': 'profile',
         'fav_color': user.fav_color,
-        'colors': colors,
+        'colors': Color.objects.all(),
         'messages_received': get_messages_received(user),
         'friend': friend,
         'friend_list': get_all_friend_list(user),
@@ -116,6 +132,7 @@ def user_profile(request, slug):
     """
     # find the user with the search query
     friend = get_object_or_404(UserProfile, slug=slug)
+    friend_mood = str(friend.mood)
     # Get color list
     colors = Color.objects.all()
     form = SendMessage()

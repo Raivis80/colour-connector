@@ -2,20 +2,22 @@
 {% load static %}
 
 {% if fav_color %}
+<p>
 <strong>My fav Colour</strong>
-<div onclick="pickFunc()" class="mx-auto color-choice" style="background-color: {{fav_color}}"></div> 
+</p>
+<div onclick="pickFunc(this)" class="pointer mx-auto color-choice rounded" style="background-color: {{fav_color}}"></div> 
 {% else %}
-<em>Choice your fav colour</em> <button onclick="pickFunc()">*</button>
+<em>Choice your fav colour</em> <button class="btn btn-sm pointer" onclick="pickFunc()">*</button>
 {% endif %}
 
 <div class="row position-relative">
     <div class="col-md-12 position-absolute top-50 start-0">
         <form id="fav_color_form" action="{% url 'profile' %}" method="post">
-        <div class="d-flex pt-3">
+        <div class="d-flex pt-3 rounded">
             {% csrf_token %}
             <input id="fav_color" type="hidden" name="color" value="">
             {% for color in colors %}
-            <div class="color-picker" style=" background-color: {{ color }}"></div>
+            <div class="color-picker rounded" style=" background-color: {{ color }}"></div>
             {% endfor %}
         </div>
     </form>

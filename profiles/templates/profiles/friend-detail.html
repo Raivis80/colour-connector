@@ -6,19 +6,33 @@
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h1 class="heading text-capitalize">{{friend.slug}} Profile</h1>
+        <h1 class="heading text-capitalize">{{friend.slug}}'s Profile</h1>
       </div>
 
       <div class="row gx-3 gy-2">
         <div class="col-12 col-sm-8 mx-auto">
-          <div class="col-12 m-2 p-3 bg-info">
-            <h5 class="panel-title text-capitalize">
-              {% include 'includes/icons/mood/mood-smile.svg' %} {{friend.slug}}
-            </h5>
-             {% if friend.fav_color %}
-              <strong>Fav colour</strong>
-              <div class="mx-auto" style="height: 50px; width: 50px; background-color: {{friend.fav_color}}"></div> 
-              {% endif %}
+          <div class="col-12 m-2 p-3 bg-info rounded">
+            <div class="row align-items-center">
+              <div class="col-12 col-sm-6">
+                
+                <h5 class="panel-title text-capitalize p-0 m-0">
+                  {% if friend.mood %}
+                  {% with friend.mood as mo %}
+                  {% include mo|cut:" " %}
+                  {% endwith %}
+                  {% else %}
+                  {% include 'includes/icons/mood/alien.svg' %}
+                  {% endif %}
+                  {{friend.slug}}
+                </h5>
+              
+              </div>
+              <div class="col-12 col-sm-6">
+                {% if friend.fav_color %}
+                <strong>Fav Colour</strong>
+                <div class="mx-auto rounded" style="height: 50px; width: 60px; background-color: {{friend.fav_color}}"></div> 
+                {% endif %}
+              </div>
           </div>
         </div>
       </div>
@@ -27,10 +41,10 @@
     <div class="panel panel-default">
       <div class="row gx-3 gy-2">
         <div class="col-12 col-sm-8 mx-auto">
-          <div class="col-12 m-2 p-3 bg-info">
-            <p class="panel-title text-capitalize">
+          <div class="col-12 m-2 p-3 bg-info rounded">
+            <h4 class="panel-title text-capitalize">
               Send Message to {{friend.slug}}
-            </p>
+            </h4>
             {% include 'includes/send-message.html' %}
           </div>
         </div>

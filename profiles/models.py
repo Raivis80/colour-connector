@@ -25,6 +25,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     fav_color = models.ForeignKey(Color, on_delete=models.CASCADE, null=True)
     
+    mood = models.ForeignKey('Mood', on_delete=models.CASCADE, null=True) 
+    
     slug = models.SlugField(unique=True)
     
     def get_absolute_url(self):
@@ -56,7 +58,7 @@ class FriendRequest(models.Model):
     
 # Crete a image link model
 class Image(models.Model):
-    image = models.CharField(max_length=225, blank=True)
+    image = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.image
@@ -68,6 +70,13 @@ class Message(models.Model):
 
     def __str__(self):
         return self.message
+    
+
+class Mood(models.Model):
+    mood = models.CharField(max_length=225, blank=True)
+
+    def __str__(self):
+        return self.mood
     
 
 # Messages

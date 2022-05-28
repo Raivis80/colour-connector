@@ -1,69 +1,53 @@
-{% extends 'base.html' %} 
-{% load static %}
-
-{% block content %}
-
+{% extends 'base.html' %} {% load static %} {% block content %}
 <div class="container text-center h-100">
-
-      <h1 class="heading">The Colour Connector</h1>
-      <h4 class="heading">Welcome {{user.username}}</h4>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-
-          <p class="panel-title">Search for user</p>
-
+  <h1 class="heading">Welcome {{user.username}}</h1>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p class="panel-title">Search for user</p>
+    </div>
+    {% comment %} Search for users {% endcomment %} 
+    {% include 'includes/user-search-form.html' %} 
+    {% comment %} Main content {% endcomment %}
+    <div class="row gx-3 gy-2 align-items-center">
+      <div class="col-12 col-sm-8">
+        <div class="col-12 m-2 p-3 bg-info rounded">
+          {% comment %} My profile dashboard fav_color {% endcomment %}
+          <div class="row gx-3 gy-2 py-3 ">
+             <h4 class="text-center">My Profile</h4>
+            <div class="col-12 col-md-6">
+              <p>{% include 'includes/forms/change-mood-form.html' %}</p>
+            </div>
+            <div class="col-12 col-md-6">
+              {% include 'includes/forms/pick-a-color-form.html' %}
+            </div>
+          </div>
+          {% comment %} FriendList list cards {% endcomment %}
+          <div class="row gx-3 gy-2 py-3">
+            <h4 class="text-center">My Connections</h4>
+            {% include 'includes/friend-list.html' %}
+          </div>
         </div>
-        {% comment %} Search for users {% endcomment %}
-
-        {% include 'includes/user-search-form.html' %}
-        
-        {% comment %} Main content {% endcomment %}
-        <div class="row gx-3 gy-2">
-          
-          <div class="col-12 col-sm-8">
-            <div class="col-12 m-2 p-3 bg-info">
-              {% comment %} My profile dashboard fav_color {% endcomment %}
-
-                <div class="row gx-3 gy-2 border-bottom py-3">
-                  <div class="col-6">
-                    <p>
-                      <strong>Username:</strong> </br>{{user.username}}
-                    </p>
-                  </div>
-
-                  <div class="col-6 pb-3">
-                    {% include 'includes/forms/pick-a-color-form.html' %}
-                  </div>
-
-                </div>	
-           
-                <h3 class="text-center">Your Connections</h3>	  
-                  {% comment %} FriendList list cards {% endcomment %}
-                <div class="row gx-3 gy-2 py-3">
-                  {% include 'includes/friend-list.html' %}
-                </div>
-              </div>
-            </div>
-
-            <div class="col-12 col-sm-4">
-              <div class="col-12 m-2 p-3 bg-info">
-                {% include 'includes/received-messages.html' %}
-              </div>
-            </div>
+      </div>
+      <div class="col-12 col-sm-4">
+        <div class="col-12 m-2 p-3 bg-info rounded max-100-vh">
+          {% include 'includes/received-messages.html' %}
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  function pickFunc() {
-    picker = document.querySelectorAll('.color-picker');
-    picker.forEach(color => {
-      color.addEventListener('click', function() {
-        document.querySelector('#fav_color').value = color.style.backgroundColor;
-        this.classList.toggle('show');
+  function pickFunc(x) {
+    picker = document.querySelectorAll(".color-picker");
+    x.classList.toggle("active");
+    picker.forEach((color) => {
+      color.addEventListener("click", function () {
+        document.querySelector("#fav_color").value =
+        color.style.backgroundColor;
         document.getElementById("fav_color_form").submit();
       });
-      color.classList.toggle('show');
+      color.classList.toggle("show");
     });
   }
 </script>
