@@ -1,4 +1,11 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block extra_messages %}
+ {% include 'includes/toasts.html' %}
+{% endblock %}
+
+{% block content %}
 <div class="container text-center h-100">
   <h1 class="heading">Welcome {{user.username}}</h1>
   <div class="panel panel-default">
@@ -8,9 +15,9 @@
     {% comment %} Search for users {% endcomment %} 
     {% include 'includes/user-search-form.html' %} 
     {% comment %} Main content {% endcomment %}
-    <div class="row gx-3 gy-2 align-items-center">
+    <div class="row gx-3 gy-2">
       <div class="col-12 col-sm-8">
-        <div class="col-12 m-2 p-3 bg-info rounded">
+        <div class="col-12 m-2 p-3 mb-3 bg-info rounded">
           {% comment %} My profile dashboard fav_color {% endcomment %}
           <div class="row gx-3 gy-2 py-3 ">
              <h4 class="text-center">My Profile</h4>
@@ -21,13 +28,16 @@
               {% include 'includes/forms/pick-a-color-form.html' %}
             </div>
           </div>
+        </div>
           {% comment %} FriendList list cards {% endcomment %}
-          <div class="row gx-3 gy-2 py-3">
+        <div class="col-12 m-2 p-3 bg-info rounded">
+          <div class="row gx-3 gy-3 py-3">
             <h4 class="text-center">My Connections</h4>
             {% include 'includes/friend-list.html' %}
           </div>
         </div>
       </div>
+
       <div class="col-12 col-sm-4">
         <div class="col-12 m-2 p-3 bg-info rounded max-100-vh">
           {% include 'includes/received-messages.html' %}
@@ -37,19 +47,8 @@
   </div>
 </div>
 
-<script>
-  function pickFunc(x) {
-    picker = document.querySelectorAll(".color-picker");
-    x.classList.toggle("active");
-    picker.forEach((color) => {
-      color.addEventListener("click", function () {
-        document.querySelector("#fav_color").value =
-        color.style.backgroundColor;
-        document.getElementById("fav_color_form").submit();
-      });
-      color.classList.toggle("show");
-    });
-  }
-</script>
+{% endblock %}
 
+{% block extra_js %}
+  <script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}

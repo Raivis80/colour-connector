@@ -5,21 +5,22 @@
 <p>
 <strong>My fav Colour</strong>
 </p>
-<div onclick="pickFunc(this)" class="pointer mx-auto color-choice rounded" style="background-color: {{fav_color}}"></div> 
+<div id="color-collapse-btn" data-bs-toggle="collapse" data-bs-target="#color-block" aria-expanded="false" aria-controls="color-block" class="pointer mx-auto color-choice rounded" style="background-color: {{fav_color}}"></div> 
 {% else %}
-<em>Choice your fav colour</em> <button class="btn btn-sm pointer" onclick="pickFunc()">*</button>
+<em>Choice your fav colour</em><div id="color-collapse-btn" data-bs-toggle="collapse" data-bs-target="#color-block" aria-expanded="false" aria-controls="color-block" class="pointer mx-auto color-choice rounded" style="background-color: 'white'"></div> 
 {% endif %}
 
-<div class="row position-relative">
-    <div class="col-md-12 position-absolute top-50 start-0">
-        <form id="fav_color_form" action="{% url 'profile' %}" method="post">
-        <div class="d-flex pt-3 rounded">
+<div id="color-block" class="row collapse multi-collapse">
+    <div class="col-md-12">
+        <form id="color-change-form" action="{% url 'profile' %}" method="post">
             {% csrf_token %}
-            <input id="fav_color" type="hidden" name="color" value="">
-            {% for color in colors %}
-            <div class="color-picker rounded" style=" background-color: {{ color }}"></div>
-            {% endfor %}
-        </div>
-    </form>
+            <input id="color-input" type="hidden" name="color" value=""/>
+            <div class="d-flex flex-row justify-content-around pt-3 rounded">
+                {% for color in colors %}
+                <div class="color-picker rounded" style=" background-color: {{ color }}"></div>
+                {% endfor %}
+            </div>
+        </form>
     </div>
 </div>
+    

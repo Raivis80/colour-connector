@@ -1,12 +1,13 @@
 {% if messages_received %} {% for message in messages_received  %}
 
-  <div class="card mb-3">
-      <div style="background-color: {{message.color}}" class="card-body">
+  <div class="card mb-3 border-0">
+      <div style="background-color: {{message.color}}" class="card-body rounded">
         <h5 class="card-title">
           <i class="fas fa-solid fa-heart"></i>
           {{message.message}}
         </h5>
       </div>
+      <a  href="{{message.get_absolute_url}}" class="stretched-link"></a>
   </div>
 
 {% endfor %} {% endif %}

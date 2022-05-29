@@ -2,7 +2,7 @@
 {% for friend in friend_list %}
 {% if friend.friend.id != user.used.id %}
 <div class="col-md-6">
-  <div class="card">
+  <div class="card border-0">
       <div class="card-body rounded" 
       style="background-color: {% if user != friend.user.user %}{{friend.user.fav_color}}{% else %}{{friend.friend.fav_color}}{% endif %};">
         <h5 class="card-title capitalize">
@@ -21,7 +21,6 @@
           {% else %}
           {% include 'includes/icons/mood/alien.svg' %}
           {% endif %}
-        
         </h5>
           <span class="h5 p-0 m-0  text-capitalize">
           {% if user != friend.user.user %} {{friend.user.user}} {% else %}{{friend.friend.user}} {% endif %}

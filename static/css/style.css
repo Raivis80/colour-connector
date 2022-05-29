@@ -1,13 +1,13 @@
 body {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 50px);
+    min-height: calc(100vh - 100px);
     font-family: 'Alata', sans-serif;
     color: #333;
 }
 
 main {
-    min-height: calc(100vh - 50px);
+    min-height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -35,18 +35,10 @@ main {
 }
 
 
-.navbar-light .navbar-nav .nav-link.active {
-    color: #0277bd;
-}
-
 #navbarNav a {
     color: #000;
 }
 
-#navbarNav a:hover {
-    color: #0277bd;
-    letter-spacing: 1px;
-}
 
 /* Custom styling for footer */
 
@@ -71,14 +63,10 @@ main {
 
 #background-video {
     position: absolute;
-    width: 100%;
+    width: auto;
     height: 100%;
     object-fit: fill;
-    /* Give some opacitiy so not too dominating when text laid on top */
-    /* opacity: 0.7; */
-    /* Use z-index so video sits behind the main title text on top */
     z-index: -1;
-    top: 0;
 }
 
 #intro {
@@ -318,4 +306,15 @@ section.aboutUs .aboutInner .aboutBlock .social ul li{
         flex: 0 0 100%;
         max-width: 100%;
     }
+}
+
+
+.toast{
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
+    border: none;
+}
+
+.toast-body {
+    position: relative;
+    z-index: 1000000 !important;
 }

@@ -41,10 +41,16 @@ def profile(request):
             try:
                 # search for single user with username excluding the current user
                 friend = UserProfile.objects.get(user__username=term)
+                # Check if the user is already a friend
+                is_friend = FriendRequest.objects.filter(Q(user=user, friend=friend) | Q(user=friend, friend=user))
+                if is_friend:
+                    message = 'You are already friends with this user'
+                    messages.warning(request, message)
+                    return redirect('profile')
                 message = 'Found user ' + friend.user.username
                 messages.success(request, message)
             except ObjectDoesNotExist:
-                message = 'User not found'
+                message = 'Could not find user ' + term
                 messages.error(request, message)
                 return redirect('profile')
         elif 'color' in request.POST:
@@ -273,4 +279,4 @@ def post_detail(request, slug):
     context = {
         'post': post,
     }
-    return render(request, 'posts/post_detail.html', context)
+    return render(request, 'posts/post-detail.html', context)

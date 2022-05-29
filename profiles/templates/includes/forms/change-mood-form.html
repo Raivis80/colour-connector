@@ -1,15 +1,18 @@
 {% comment %} Create color choice pop feature with 6 colors {% endcomment %} 
 {% load static %} {% if mood %}
 <strong>My Current Mood</strong>
-<div onclick="moodFunc(this)" class="pointer mx-auto mood-choice">
+<div id="mood-collapse-btn" data-bs-toggle="collapse" data-bs-target="#mood-block" aria-expanded="false" aria-controls="mood-block" class="pointer mx-auto mood-choice">
   {% include mood.mood %}
 </div>
 {% else %}
-<em>Choice your mood</em> <button class="pointer btn btn-sm" onclick="moodFunc(this)">*</button>
+<em>Choice your mood</em> 
+<div id="mood-collapse-btn" data-bs-toggle="collapse" data-bs-target="#mood-block" aria-expanded="false" aria-controls="mood-block" class="pointer mx-auto mood-choice">
+  {% include 'includes/icons/moods/alien.svg' %}
+</div>
 {% endif %}
 
-<div class="row position-relative">
-  <div class="col-md-12 position-absolute top-50 start-0">
+<div id="mood-block" class="row collapse multi-collapse">
+  <div class="col-md-12">
     <form id="mood-change-form" action="{% url 'profile' %}" method="post">
       <div class="d-flex pt-3">
         {% csrf_token %}
@@ -23,19 +26,3 @@
     </form>
   </div>
 </div>
-
-<script>
-  function moodFunc(x) {
-    x.classList.toggle("active");
-    picker = document.querySelectorAll(".mood-picker");
-    picker.forEach(mood => {
-      mood.addEventListener("click", function () {
-        document.querySelector("#mood-input").value = this.dataset.mood;
-        this.classList.toggle("show");
-        document.querySelector("#mood-change-form").submit();
-      });
-      mood.classList.toggle("show");
-      mood.getElementsByTagName('svg')[0].classList.toggle("show");
-    });
-  }
-</script>

@@ -1,6 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block extra_js %} {% endblock %}
-{% block content %}
+{% extends 'base.html' %} 
+{% load static %}
 
+{% block content %}
 <div class="container">
   <div class="text-center">
 
@@ -52,4 +53,8 @@
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/profile.js' %}"></script>
 {% endblock %}
