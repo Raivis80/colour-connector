@@ -11,24 +11,31 @@
       <h1 class="heading">{{slug}}</h1>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <p class="panel-title">Send Message</p>
         </div>
 
         {% comment %} Main content {% endcomment %}
+         <div class="col-4 mx-auto">
+            <div class="card border-0">
+                <div class="card-body rounded" 
+                  style="background-color: {{post.sender.fav_color}};">
+                  <h5 class="card-title capitalize">
+                    {% if post.sender.mood%}
+                    {% with post.sender.mood as mo %}
+                    {% include mo|cut:" " %}
+                    {% endwith %}
+                    {% endif %}
+                  </h5>
+                    <h3 class="text-capitalize">{{post.sender}}</h3>
+                </div>
+              <a  href="{{post.sender.get_absolute_url}}" class="stretched-link"></a>
+            </div>
+          </div>
 
         <div class="row gx-3 gy-2">
           <div class="col-12 col-sm-8 mx-auto">
-            <div class="col-12 m-2 p-3" style="background-color: {{post.color}}">
+            <div class="col-12 m-2 p-3 rounded" style="background-color: {{post.color}}">
                <div class="row">
-                <div class="col-12">
-                  {% if post.sender.mood%}
-                  {% with post.sender.mood as mo %}
-                  {% include mo|cut:" " %}
-                  {% endwith %}
-                  {% endif %}
-                  
-                  <h3 class="text-capitalize">{{post.sender}}</h3>
-                </div>
+               
                 <div class="col-12">
                   <p>
                     {{post.message}}

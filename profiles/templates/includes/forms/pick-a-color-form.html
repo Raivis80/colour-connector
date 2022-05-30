@@ -1,26 +1,23 @@
 {% comment %} Create color choice pop feature with 6 colors {% endcomment %}
 {% load static %}
 
-{% if fav_color %}
-<p>
-<strong>My fav Colour</strong>
-</p>
-<div id="color-collapse-btn" data-bs-toggle="collapse" data-bs-target="#color-block" aria-expanded="false" aria-controls="color-block" class="pointer mx-auto color-choice rounded" style="background-color: {{fav_color}}"></div> 
-{% else %}
-<em>Choice your fav colour</em><div id="color-collapse-btn" data-bs-toggle="collapse" data-bs-target="#color-block" aria-expanded="false" aria-controls="color-block" class="pointer mx-auto color-choice rounded" style="background-color: 'white'"></div> 
-{% endif %}
+<div class="w-100">
+    <div id="color-btn">
+        {% include 'includes/color-button.html' %}
+    </div>
 
-<div id="color-block" class="row collapse multi-collapse">
-    <div class="col-md-12">
-        <form id="color-change-form" action="{% url 'profile' %}" method="post">
-            {% csrf_token %}
-            <input id="color-input" type="hidden" name="color" value=""/>
-            <div class="d-flex flex-row justify-content-around pt-3 rounded">
-                {% for color in colors %}
-                <div class="color-picker rounded" style=" background-color: {{ color }}"></div>
-                {% endfor %}
-            </div>
-        </form>
+    <div id="color-block" class="row collapse multi-collapse">
+        <div class="d-flex flex-row justify-content-around pt-3 rounded w-100">
+            {% for color in colors %}
+                <form class="form-width">
+                    {% csrf_token %}
+                    <input id="color-input" type="hidden" name="color" value="{{color}}"/>
+                    <div hx-post="{% url 'change_color' %}" hx-target="#color-btn" >
+                        <div class="color-picker rounded" style=" background-color: {{ color }}"></div>
+                    </div>
+                </form>
+            {% endfor %}
+        </div>
     </div>
 </div>
     

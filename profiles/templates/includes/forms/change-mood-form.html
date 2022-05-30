@@ -1,28 +1,22 @@
 {% comment %} Create color choice pop feature with 6 colors {% endcomment %} 
-{% load static %} {% if mood %}
-<strong>My Current Mood</strong>
-<div id="mood-collapse-btn" data-bs-toggle="collapse" data-bs-target="#mood-block" aria-expanded="false" aria-controls="mood-block" class="pointer mx-auto mood-choice">
-  {% include mood.mood %}
-</div>
-{% else %}
-<em>Choice your mood</em> 
-<div id="mood-collapse-btn" data-bs-toggle="collapse" data-bs-target="#mood-block" aria-expanded="false" aria-controls="mood-block" class="pointer mx-auto mood-choice">
-  {% include 'includes/icons/moods/alien.svg' %}
-</div>
-{% endif %}
+{% load static %} 
 
-<div id="mood-block" class="row collapse multi-collapse">
-  <div class="col-md-12">
-    <form id="mood-change-form" action="{% url 'profile' %}" method="post">
-      <div class="d-flex pt-3">
-        {% csrf_token %}
-        <input id="mood-input" type="hidden" name="mood" value="" />
+<div class="w-100">
+  <div id="mood-btn">
+    {%include 'includes/mood-button.html' %}
+  </div>
+
+  <div id="mood-block" class="row collapse multi-collapse">
+      <div class="d-flex flex-row justify-content-around pt-3 rounded w-100">
         {% for m in moods %}
-        <div data-mood="{{m}}" class="mood-picker bg-info">
-          {% include m.mood %}
-        </div>
-        {% endfor %}
-      </div>
-    </form>
+        <form class="form-width">
+          {% csrf_token %}
+          <input type="hidden" name="mood" value="{{m}}" />
+          <div hx-post="{% url 'change_mood' %}" hx-target="#mood-btn" class="mood-picker bg-info">
+            {% include m.mood %}
+          </div>
+        </form>
+      {% endfor %}
+    </div>
   </div>
 </div>

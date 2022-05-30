@@ -2,16 +2,13 @@
 {% load static %} 
 
 {% block extra_messages %}
- {% include 'includes/toasts.html' %}
 {% endblock %}
+{% include 'includes/toasts.html' %}
 
 {% block content %}
 <div class="container text-center h-100">
-  <h1 class="heading">Welcome {{user.username}}</h1>
+  <h1 class="heading text-capitalize">Welcome {{user.username}}</h1>
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <p class="panel-title">Search for user</p>
-    </div>
     {% comment %} Search for users {% endcomment %} 
     {% include 'includes/user-search-form.html' %} 
     {% comment %} Main content {% endcomment %}
@@ -21,10 +18,10 @@
           {% comment %} My profile dashboard fav_color {% endcomment %}
           <div class="row gx-3 gy-2 py-3 ">
              <h4 class="text-center">My Profile</h4>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6  d-flex justify-content-center">
               <p>{% include 'includes/forms/change-mood-form.html' %}</p>
             </div>
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-6 d-flex flex-column justify-content-center ">
               {% include 'includes/forms/pick-a-color-form.html' %}
             </div>
           </div>
@@ -39,8 +36,10 @@
       </div>
 
       <div class="col-12 col-sm-4">
-        <div class="col-12 m-2 p-3 bg-info rounded max-100-vh">
-          {% include 'includes/received-messages.html' %}
+        <div class="col-12 m-2 p-3 bg-info message rounded">
+          <div hx-get="{% url 'profile' %}" hx-trigger="every 10s">
+            {% include 'includes/received-messages.html' %}
+          </div>
         </div>
       </div>
     </div>

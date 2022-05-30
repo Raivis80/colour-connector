@@ -89,6 +89,8 @@ class Post(models.Model):
     image = models.ForeignKey(
         Image, on_delete=models.CASCADE, blank=True, null=True)
     
+    seen = models.BooleanField(default=False)
+    
     slug = models.SlugField(unique=True, default=uuid.uuid4)
     
     def get_absolute_url(self):

@@ -1,0 +1,21 @@
+{% if fav_color %}
+<p>
+<strong>My fav Colour</strong>
+</p>
+<div id="color-collapse-btn" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#color-block" 
+    aria-expanded="false" 
+    aria-controls="color-block" 
+    class="pointer mx-auto color-choice rounded {{active}}" 
+    style="background-color: {{fav_color}}"></div> 
+{% else %}
+<em>Choice your fav colour</em>
+<div id="color-collapse-btn" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#color-block" 
+    aria-expanded="false" 
+    aria-controls="color-block" 
+    class="pointer mx-auto color-choice rounded {{active}}" 
+    style="background-color: 'white'"></div> 
+{% endif %}

@@ -1,0 +1,25 @@
+{% if mood %}
+<p>
+<strong>My Current Mood</strong>
+</p>
+<div id="mood-collapse-btn" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#mood-block" 
+    aria-expanded="false" 
+    aria-controls="mood-block" 
+    class="pointer mx-auto mood-choice {{active}} rounded">
+    {% with mood as mo %}
+    {% include mo|cut:" " %}
+    {% endwith %}
+</div>
+{% else %}
+<em>Choice your mood</em> 
+<div id="mood-collapse-btn2" 
+    data-bs-toggle="collapse" 
+    data-bs-target="#mood-block" 
+    aria-expanded="false" 
+    aria-controls="mood-block" 
+    class="pointer mx-auto mood-choice  {{active}} rounded">
+    {% include 'includes/icons/mood/alien.svg' %}
+</div>
+{% endif %}

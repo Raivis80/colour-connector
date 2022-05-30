@@ -1,38 +1,32 @@
-<div class="row mt-3">
+{% load static %}
+
+<div class="row mt-4">
 
     <div class="col-12 col-md-4">
      
     </div>
     
     <div class="col-12 col-md-4">
-        <form
-          class="form mx-auto searh-form"
-          method="POST"
-          action="{% url 'profile' %}"
-          >
-          <div class="input-group mb-3 col-12">
-            {% csrf_token %}
-
+      <form class="form mx-auto searh-form" autocomplete="off">
+        <div class="input-group mb-3 col-12">
+          {% csrf_token %}
           <input
-              type="text"
-              class="search form-control rounded"
-              name="search"
-              placeholder="Search for user..."
-              aria-label="Search for User"
-            />
-            
-            <button
-            class="btn btn-primary"
-            type="submit"
-            aria-label="Submit your search query"
-            >
-            <i class="fas fa-search"></i>
-              search
-            </button>
-          </div>
-        </form>
+            type="text"
+            class="search form-control rounded p-2 input"
+            placeholder="Search Users..." 
+            name="search"
+            aria-label="Search for User"
+            hx-post="{% url 'search_user' %}" 
+            hx-trigger="keyup changed delay:1s, search" 
+            hx-swap="outerhtml"
+            hx-target="#username-error"/>
+          </div>    
+        <div id="username-error" class="error"></div>   
+      </form>
     </div>
-    <div class="col-12 col-md-4"> 
-      {% include 'includes/accept-friend.html' %}
-    </div>
-  </row>
+  
+  <div class="col-12 col-md-4"> 
+    {% include 'includes/accept-friend.html' %}
+  </div>
+
+</row>

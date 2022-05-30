@@ -1,29 +1,31 @@
-.mood-picker,
+.form-width {
+    width: 60px;
+}
+
+
 .color-picker {
     cursor: pointer;
-    display: flex;
-
     align-items: center;
-    width: 60px;
+    width: inherit;
     height: 50px;
     transition: all 0.3s;
 }
 
-.mood-picker svg{
+.mood-picker svg {
     width: 100%;
     height: auto;
     border-radius: 50%;
 }
 
-.pointer{
+.pointer {
     cursor: pointer;
 }
 
-.form-width{
+.form-width {
     margin: 0 auto;
+    width: 100%;
     max-width: 500px;
 }
-
 
 .color-picker-friend {
     cursor: pointer;
@@ -34,8 +36,7 @@
     transition: all 0.3s;
 }
 
-.mood-picker,
-.mood-choice{
+.mood-picker {
     cursor: pointer;
     border-radius: 4px;
     width: 100%;
@@ -46,24 +47,27 @@
 
 .btn,
 .color-picker,
+.mood-choice,
 .color-choice,
 .nav-link,
-.card{
+.card {
     box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
 }
 
 
-.colors{
+.colors {
     cursor: pointer;
 }
 
-.color-choice{
+.mood-choice,
+.color-choice {
     height: 50px;
     width: 100%;
     max-width: 60px;
+    border: ;
 }
 
-.active{
+.active {
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.493);
 }
 
@@ -78,4 +82,20 @@
 .color-picker:hover {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.493);
     transition: all 0.3s;
+}
+
+
+.input{
+    font-size: 1.2rem;
+    box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.493);
+}
+
+.input::placeholder{
+    font-size: 1.2rem;
+    text-align:-moz-center;
+}
+
+.message{
+    height: 100%;
+    overflow: auto;
 }
