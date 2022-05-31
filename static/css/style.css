@@ -1,13 +1,15 @@
 body {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 120px);
     font-family: 'Alata', sans-serif;
     color: #333;
+    background-color: #ebebeb;
+    overflow-x: hidden;
 }
 
 main {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 120px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,8 +65,8 @@ main {
 
 #background-video {
     position: absolute;
+    height: 100vh;
     width: auto;
-    height: 100%;
     object-fit: fill;
     z-index: -1;
 }
@@ -210,7 +212,8 @@ main {
 /* User Account Pages*/
 
 .account-body {
-    background: url('../images/colour-explosion-new.gif') no-repeat right center;
+    background: url('../images/colour-explosion-new.gif') no-repeat center center;
+    background-size: cover;
 }
 
 /*About Us Page*/

@@ -1,0 +1,42 @@
+{% load static %}
+
+<div class="toast unfriend" 
+    role="alert" 
+    aria-live="assertive"
+    aria-atomic="true">
+      
+    <div class="toast-body p-0">
+        <div class="p-3 rounded text-center" style="background-color: {{friend.fav_color}}" >       
+            <form action="{% url 'unfriend' friend.id %}" method="POST">        
+                {% csrf_token %}
+                
+                <h5 class="capitalize">
+                    {% if friend.mood %}
+                    {% with friend.mood as mo %}
+                    {% include mo|cut:" " %}
+                    {% endwith %}
+                    {% else %}
+                    {% include 'includes/icons/mood/alien.svg' %}
+                    {% endif %}
+                </h5>
+
+                <span class="h5 p-0 m-0  text-capitalize">
+                    {{friend.user.username}}
+                </span> </br>
+
+                <input type="hidden" name="friend" value="{{friend.id}}" />
+                <div class="d-flex justify-content-around">
+                <button type="submit" class="btn btn-outline-danger btn-sm">
+                    <i class="fas fa-user-minus"></i> Unfriend
+                </button>
+                {% comment %} Cancel and dismiss bootstrap toast {% endcomment %}
+                <button type="button" data-bs-dismiss="toast" aria-label="Close" class="btn btn-outline-secondary btn-sm" data-dismiss="toast">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

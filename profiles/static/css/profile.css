@@ -2,7 +2,6 @@
     width: 60px;
 }
 
-
 .color-picker {
     cursor: pointer;
     align-items: center;
@@ -28,47 +27,29 @@
 }
 
 .color-picker-friend {
-    cursor: pointer;
     width: 100%;
     max-width: 60px;
     height: 50px;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
-    transition: all 0.3s;
 }
 
 .mood-picker {
-    cursor: pointer;
     border-radius: 4px;
     width: 100%;
     max-width: 60px;
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
-    transition: all 0.3s;
 }
 
 .btn,
 .color-picker,
 .mood-choice,
+.mood-picker,
 .color-choice,
+.color-picker-friend,
 .nav-link,
 .card {
-    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
-}
-
-
-.colors {
+    border-radius: 4px;
     cursor: pointer;
-}
-
-.mood-choice,
-.color-choice {
-    height: 50px;
-    width: 100%;
-    max-width: 60px;
-    border: ;
-}
-
-.active {
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.493);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, 0.493);
+    transition: all 0.3s;
 }
 
 .mood-choice:hover,
@@ -84,6 +65,20 @@
     transition: all 0.3s;
 }
 
+.colors {
+    cursor: pointer;
+}
+
+.mood-choice,
+.color-choice {
+    height: 50px;
+    width: 100%;
+    max-width: 60px;
+}
+
+.active {
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.493);
+}
 
 .input{
     font-size: 1.2rem;
@@ -98,4 +93,15 @@
 .message{
     height: 100%;
     overflow: auto;
+}
+
+.invert-text{
+    color: #fafafa;
+    mix-blend-mode: difference; 
+    background-blend-mode: screen;
+}
+
+.bg{
+    background-color: rgba(255, 255, 255, 0.80);
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.500);
 }

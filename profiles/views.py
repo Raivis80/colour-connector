@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, render
 from django.contrib.auth.decorators import login_required 
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.http import require_POST, require_GET
@@ -34,13 +35,14 @@ def profile(request):
     def get_requests_received(user):
         requests_received = FriendRequest.objects.filter(friend=user, is_accepted=False)
         if requests_received:
-            return reversed((requests_received))
+            return requests_received
         return requests_received
 
     # get friend list for the current user and friends of the current user
     def get_all_friend_list(user):
         friend_list = FriendRequest.objects.filter(
             Q(user=user, is_accepted=True) | Q(friend=user, is_accepted=True))
+        friend_list = friend_list.order_by('creation_time')
         # exclude the current user from the friend list
         return friend_list
     
@@ -57,13 +59,16 @@ def profile(request):
         return form
 
     def get_messages_received(user):
-        messages_received = Post.objects.filter(receiver=user)
+        messages_received = Post.objects.filter(receiver=user).order_by('creation_time')
         return reversed(messages_received)
     
+    def get_notifications(user):
+        notifications = messages_received.union(get_requests_received(user))
+    
     if request.htmx:
-        messages_received = get_messages_received(user)
         context = {
-            'messages_received': messages_received,
+            'messages_received': get_messages_received(user),
+            'requests_received': get_requests_received(user),
         }
         return render (request, 'includes/received-messages.html', context)
     else:
@@ -103,12 +108,11 @@ def search_user(request):
         elif is_myself:
             resp_message = "<div class='text-info'>You can't add yourself as a friend</div>"
             return HttpResponse(resp_message)
-        else:
-            context = {
-                'friend': friend,
-            }
-            
-            return render(request, 'includes/toasts.html', context)
+        context = {
+            'show': 'show',
+            'friend': friend,
+        }
+        return render(request, 'includes/toasts/send-request.html', context)
     else:
         resp_message = "<div class='text-danger'>No user with this username found</div>"
         return HttpResponse(resp_message)
@@ -121,7 +125,6 @@ def change_mood(request):
     """
     user = get_object_or_404(UserProfile, user=request.user)
     mood = request.POST['mood']
-    print(mood)
     mood_instance = Mood.objects.get(mood=mood)
     user.mood = mood_instance
     user.save()
@@ -222,12 +225,46 @@ def accept_friend(request):
     """
     request_id = request.POST['request_id']
     user = get_object_or_404(UserProfile, user=request.user)
+    
     try:
         #accept friend request and save it
         accept_request = FriendRequest.objects.get(id=request_id)
         accept_request.is_accepted = True
         accept_request.save()
+            # get friend list for the current user and friends of the current user
+        def get_all_friend_list(user):
+            friend_list = FriendRequest.objects.filter(
+                Q(user=user, is_accepted=True) | Q(friend=user, is_accepted=True))
+            friend_list = friend_list.order_by('creation_time')
+            # exclude the current user from the friend list
+            return friend_list
         message = 'You are now friends with ' + accept_request.friend.user.username
+        messages.success(request, message)
+        context = {
+            'friend_list': get_all_friend_list(user),
+        }
+        return render(request, 'includes/friend-list.html', context)
+    
+    except ObjectDoesNotExist:
+        message = 'Could not find friend request in the database'
+        messages.error(request, message)
+        return redirect('profile')
+    
+
+@require_POST
+def reject_friend(request):
+    """
+    Reject a friend request function
+    requires a POST to get request id  from the form
+    find user in database based on the friend's username
+    """
+    request_id = request.POST['request_id']
+    user = get_object_or_404(UserProfile, user=request.user)
+    try:
+        #reject friend request and save it
+        reject_request = FriendRequest.objects.get(id=request_id)
+        reject_request.delete()
+        message = 'You have rejected ' + reject_request.friend.user.username + '\'s friend request'
         messages.success(request, message)
         return redirect('profile')
     
@@ -238,17 +275,17 @@ def accept_friend(request):
 
 
 @require_POST
-def delete_friend(request):
+def unfriend(request, friend_id):
     """
     Delete a friend from the current user's friend list
-    POST is required to get the username from the form
+    Send a delete request via htmx delete method
     """
     try:     
-        friend = User.objects.get(username=request.POST['friend'])
+        friend = get_object_or_404(UserProfile, id=friend_id)
         # get the current user
         user = get_object_or_404(UserProfile, user=request.user)
         # delete the friend from the current user's friend list
-        delete_friend = FriendRequest.objects.get(user=user, friend=friend.id)
+        delete_friend = FriendRequest.objects.filter(Q(user=user, friend=friend) | Q(user=friend, friend=user))
         delete_friend.delete()
         message = 'Friend deleted'
         messages.success(request, message)
@@ -263,23 +300,27 @@ def delete_friend(request):
 def send_message(request):
     """
     Send message to user requires POST
+    Get the message from the form and
+    Save the message to the database 
+    and redirect to the friend's profile
     """
     form = SendMessage(request.POST)
-
-    if 'message' in request.POST:
+    # Form validation check if the form is valid
+    if 'message' in request.POST and request.POST['message'] != '':
         message = request.POST['message']
         message_instance = Message(id=message)
     else:
         message = 'Message is empty, please select a message'
         messages.error(request, message)
-        return redirect('profile')
-    if 'color' in request.POST:
+        return redirect(request.META.get('HTTP_REFERER'))
+    if 'color' in request.POST and request.POST['color'] != '':
         color = request.POST['color']
         color_instance = Color.objects.get(color=color)
     else:
         message = 'Color is empty, please select a color'
         messages.error(request, message)
-        return redirect('profile')
+        return redirect(request.META.get('HTTP_REFERER'))
+    # If the form is valid try to save the message
     try:
         # get the current user
         sender = get_object_or_404(UserProfile, user=request.user)
@@ -301,7 +342,6 @@ def send_message(request):
 def post_detail(request, slug):
     """
     Display the Post detail page
-  
     """
     # find the user with the search query
     post = get_object_or_404(Post, slug=slug)

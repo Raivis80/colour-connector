@@ -4,14 +4,14 @@
     {% for message in messages %} 
     {% with message.level as level %} 
     {% if level == 40 %}
-    <div class="toast" 
+    <div class="toast toasts" 
       role="alert" 
       aria-live="assertive" 
       aria-atomic="true">     
       <div class="toast-body rounded alert-danger">{{ message }}</div>
     </div>
     {% elif level == 30 %}
-    <div class="toast" 
+    <div class="toast toasts" 
         role="alert" 
         aria-live="assertive" 
         aria-atomic="true">
@@ -20,7 +20,7 @@
 
       {% elif level == 20 %}
       <div
-          class="toast"
+          class="toast toast.shows"
           role="alert"
           aria-live="assertive"
           aria-atomic="true"
@@ -30,7 +30,7 @@
   
         {% else %}
         <div
-          class="toast"
+          class="toast toasts"
           role="alert"
           aria-live="assertive"
           aria-atomic="true">
@@ -40,14 +40,6 @@
     {% endif %} 
     {% endwith %} 
     {% endfor %}
+
 {% endif %}
 
-<script>
-  onload = function() {
-    var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-    var toastList = toastElList.map(function (toastEl) {
-      return new bootstrap.Toast(toastEl);
-    });
-    toastList.forEach((toast) => toast.show());
-  };
-</script>

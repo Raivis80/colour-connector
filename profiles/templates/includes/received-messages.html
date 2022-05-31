@@ -1,13 +1,37 @@
-{% if messages_received %} {% for message in messages_received  %}
 
-  <div class="card mb-3 border-0">
+    {% if requests_received %} {% for request in requests_received  %}
+    <div class="card mb-3 border-0">
+      <div style="background-color: {{request.user.fav_color}}" class="card-body rounded">
+        <div>
+          <span class=" invert-text">
+          {% if request.user.mood %}
+          {% with request.user.mood as m %}
+          {% include m|cut:" " %}
+          {% endwith %}
+          {% endif %}
+          </span>
+          <p class="card-title invert-text text-capitalize">
+            {{request.user}} wants to be your friend!
+          </p>
+        </div>
+        <div class="card-text">
+          {% include 'includes/forms/accept-decline-friendship.html' %}
+        </div>
+      </div>
+    </div>
+      {% endfor %}
+      {% endif %}
+    {% if messages_received %} {% for message in messages_received  %}
+    <div class="card mb-3 border-0">
       <div style="background-color: {{message.color}}" class="card-body rounded">
-        <h5 class="card-title">
+        <h5 class="card-title invert-text">
           <i class="fas fa-solid fa-heart"></i>
           {{message.message}}
         </h5>
       </div>
       <a  href="{{message.get_absolute_url}}" class="stretched-link"></a>
-  </div>
+    </div>
+      {% endfor %}
+        {% endif %}
+   	
   
-{% endfor %} {% endif %}

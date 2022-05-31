@@ -1,5 +1,5 @@
 
-if (window.location.pathname === "/profile"){
+if (window.location.pathname === "/profile/"){
   var colorCollapsible = document.getElementById("color-block");
   colorCollapsible.addEventListener("show.bs.collapse", function () {
     let picker = document.querySelectorAll(".color-picker");
@@ -86,6 +86,14 @@ function choice(elem) {
       }, false)
     })
 })()
+
+
+function unfriend(){
+  var toastDiv = document.querySelector(".unfriend");
+  console.log(toastDiv);
+  toast = new bootstrap.Toast(toastDiv, { delay: 5000 })
+  toast.show();
+};
 
 
 

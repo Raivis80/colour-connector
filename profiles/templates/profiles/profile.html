@@ -3,18 +3,18 @@
 
 {% block extra_messages %}
 {% endblock %}
-{% include 'includes/toasts.html' %}
+{% include 'includes/toasts/send-request.html' %}
 
 {% block content %}
-<div class="container text-center h-100">
+<div class="container text-center h-100  p-0 p-sm-3">
   <h1 class="heading text-capitalize">Welcome {{user.username}}</h1>
   <div class="panel panel-default">
     {% comment %} Search for users {% endcomment %} 
-    {% include 'includes/user-search-form.html' %} 
+    {% include 'includes/forms/user-search-form.html' %} 
     {% comment %} Main content {% endcomment %}
     <div class="row gx-3 gy-2">
       <div class="col-12 col-sm-8">
-        <div class="col-12 m-2 p-3 mb-3 bg-info rounded">
+        <div class="col-12 m-2 p-3 mb-4 bg rounded">
           {% comment %} My profile dashboard fav_color {% endcomment %}
           <div class="row gx-3 gy-2 py-3 ">
              <h4 class="text-center">My Profile</h4>
@@ -27,16 +27,16 @@
           </div>
         </div>
           {% comment %} FriendList list cards {% endcomment %}
-        <div class="col-12 m-2 p-3 bg-info rounded">
-          <div class="row gx-3 gy-3 py-3">
-            <h4 class="text-center">My Connections</h4>
+        <div class="col-12 m-2 p-3 bg rounded">
+          <h4 class="text-center">My Connections</h4>
+          <div id="friend-list" class="row gx-3 gy-3 py-3">
             {% include 'includes/friend-list.html' %}
           </div>
         </div>
       </div>
 
       <div class="col-12 col-sm-4">
-        <div class="col-12 m-2 p-3 bg-info message rounded">
+        <div class="col-12 m-2 p-3 bg message rounded">
           <div hx-get="{% url 'profile' %}" hx-trigger="every 10s">
             {% include 'includes/received-messages.html' %}
           </div>

@@ -4,8 +4,8 @@
 <div class="col-md-6">
   <div class="card border-0">
       <div class="card-body rounded" 
-      style="background-color: {% if user != friend.user.user %}{{friend.user.fav_color}}{% else %}{{friend.friend.fav_color}}{% endif %};">
-        <h5 class="card-title capitalize">
+        style="background-color: {% if user != friend.user.user %}{{friend.user.fav_color}}{% else %}{{friend.friend.fav_color}}{% endif %};">
+        <h5 class="card-title capitalize invert-text">
           {% if user != friend.user.user %}
           {% if friend.user.mood %}
           {% with friend.user.mood as mo %}
@@ -22,7 +22,7 @@
           {% include 'includes/icons/mood/alien.svg' %}
           {% endif %}
         </h5>
-          <span class="h5 p-0 m-0  text-capitalize">
+          <span class="h5 p-0 m-0 text-capitalize invert-text">
           {% if user != friend.user.user %} {{friend.user.user}} {% else %}{{friend.friend.user}} {% endif %}
           </span>
       </div>

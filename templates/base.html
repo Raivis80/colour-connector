@@ -39,7 +39,7 @@
     </title>
 </head>
 
-<body id="splashImage">
+<body class="account-body">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-md navbar-light">
         <div class="container">
@@ -101,8 +101,19 @@
     </script>
         <!-- Fontawesome link -->
     <script src="https://kit.fontawesome.com/b83175b9a4.js" crossorigin="anonymous"></script>
-    {% block extra_js %} 
+    {% block extra_js %}
+    
     {% endblock %}
+    
+<script>
+    onload = function() {
+        var toastElList = [].slice.call(document.querySelectorAll(".toasts"));
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl);
+        });
+        toastList.forEach((toast) => toast.show());
+    };
+</script>
 
 </body>
 

@@ -12,7 +12,10 @@
         <form class="form-width">
           {% csrf_token %}
           <input type="hidden" name="mood" value="{{m}}" />
-          <div hx-post="{% url 'change_mood' %}" hx-target="#mood-btn" class="mood-picker bg-info">
+          <div 
+            hx-post="{% url 'change_mood' %}" 
+            hx-target="#mood-btn" 
+            class="mood-picker">
             {% include m.mood %}
           </div>
         </form>

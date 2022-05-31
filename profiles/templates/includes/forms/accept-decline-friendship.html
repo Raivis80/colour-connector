@@ -1,0 +1,18 @@
+
+<div class="d-flex w-100 justify-content-around">
+  <div>
+    <form>
+      {% csrf_token %}
+      <input type="hidden" name="request_id" value="{{request.id}}">
+      <span hx-post={% url 'accept_friend' %} hx-target="#friend-list" class="btn btn-primary">Accept</span>
+    </form>
+  </div>
+
+  <div>
+    <form>
+      {% csrf_token %}
+      <input type="hidden" name="request_id" value="{{request.id}}">
+      <span hx-post={% url 'reject_friend' %} hx-target="#friend-list" class="btn btn-danger">Reject</span>
+    </form>
+  </div>
+</div>
